@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  flip-eth-a:
+    build: .
+    image: makerdao/auction-keeper
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
+      - $PWD/model-eth.sh:/opt/keeper/model-eth.sh
+      - $PWD/my_environment_flip.sh:/opt/keeper/my_environment_flip.sh
+    command: /opt/keeper/flip-eth-a.sh
