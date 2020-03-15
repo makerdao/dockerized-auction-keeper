@@ -36,10 +36,10 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flippe
     image: makerdao/auction-keeper
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
-      - $PWD/flip-eth-a.sh:/opt/keeper/flip-bat.sh
-      - $PWD/model-eth.sh:/opt/keeper/model-bat.sh
+      - $PWD/flip-bat-a.sh:/opt/keeper/flip-bat.sh
+      - $PWD/model-bat.sh:/opt/keeper/model-bat.sh
       - $PWD/my_environment_flip.sh:/opt/keeper/my_environment_flip.sh
-    command: /opt/keeper/flip-eth-a.sh
+    command: /opt/keeper/flip-bat-a.sh
 ```
 - start it as `docker-compose up flip-bat`
 
