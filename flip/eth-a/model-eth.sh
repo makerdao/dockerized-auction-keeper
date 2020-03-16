@@ -8,7 +8,7 @@ while true; do
 
    ethPrice=$(echo $body | jq '.ethereum.usd')
 
-   bidPrice=$(bc -l <<< "$ethPrice * $DISCOUNT")
+   bidPrice=$(bc -l <<< "$ethPrice * (1-$DISCOUNT)")
 
    echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${GASPRICE}\"}"
 
