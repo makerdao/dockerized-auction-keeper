@@ -1,3 +1,4 @@
 secrets/
 .idea
 *.iml
+*.log

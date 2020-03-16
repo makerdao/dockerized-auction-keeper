@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source my_environment_flip.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+source environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
 while true; do
 

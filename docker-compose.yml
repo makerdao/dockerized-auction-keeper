@@ -5,7 +5,12 @@ services:
     image: makerdao/auction-keeper
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
-      - $PWD/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
-      - $PWD/model-eth.sh:/opt/keeper/model-eth.sh
-      - $PWD/my_environment_flip.sh:/opt/keeper/my_environment_flip.sh
+      - $PWD/flip/eth-a/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
+      - $PWD/flip/eth-a/model-eth.sh:/opt/keeper/model-eth.sh
+      - $PWD/environment.sh:/opt/keeper/environment.sh
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
     command: /opt/keeper/flip-eth-a.sh model-eth.sh
