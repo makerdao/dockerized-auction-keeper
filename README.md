@@ -35,6 +35,7 @@ https://docs.docker.com/compose/install/
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
+    - `DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `MINIMUM_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
     - `DISCOUNT`: Discount from ETH's FMV, which will be used as the bid price
