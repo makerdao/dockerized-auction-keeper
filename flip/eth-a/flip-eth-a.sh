@@ -15,6 +15,7 @@ ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --eth-key ${ACCOUNT_FLIP_ETH_A_KEY?:} \
     --type flip \
     --max-auctions 100 \
+    --ethgasstation-api-key ${ETHGASSTATION_API_KEY} \
     --ilk ${ILK} \
     --from-block ${FIRST_BLOCK_TO_CHECK} \
     --min-auction ${MINIMUM_AUCTION_ID_TO_CHECK} \

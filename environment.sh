@@ -2,6 +2,8 @@ SERVER_ETH_RPC_HOST=https://paritynodehere
 SERVER_ETH_RPC_PORT=8545
 ACCOUNT_ADDRESS=0x40418bxxxxxx
 
+ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
+
 # FLIP-ETH-A account
 ACCOUNT_FLIP_ETH_A_KEY='key_file=/opt/keeper/secrets/keystore-eth-flip-a.json,pass_file=/opt/keeper/secrets/password-eth-flip-a.txt'
 

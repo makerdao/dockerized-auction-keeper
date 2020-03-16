@@ -33,6 +33,7 @@ https://docs.docker.com/compose/install/
 - configure following variables in `my_environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
     - `SERVER_ETH_RPC_PORT`: ETH RPC port  
+    - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `ACCOUNT_ADDRESS`: address to use for bidding
     - `ACCOUNT_FLIP_ETH_A_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
