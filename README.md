@@ -3,7 +3,7 @@
 `dockerized-auction-keeper` contains a preconfigured [auction-keeper](https://github.com/makerdao/auction-keeper) that follows a simple FMV discount pricing model. With docker as the only prerequisite, this instance is well-suited for first-time auction keeper operators.
 
 After following the setup procedure below, this keeper works out of the box under the following configuration:
-- Bites, kicks, and participates in ETH-A Flip auctions
+- Bites unsafe vaults, kicks, and participates in up to 100 active ETH-A Flip auctions
 - Begins scan at a prescribed auction id - we recommend starting at:
   - `mainnet` - 4500
   - `kovan` - 1800

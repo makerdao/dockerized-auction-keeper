@@ -14,6 +14,7 @@ ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --eth-from ${ACCOUNT_ADDRESS?:} \
     --eth-key ${ACCOUNT_KEY?:} \
     --type flip \
+    --max-auctions 100 \
     --ilk ${ILK} \
     --from-block ${FIRST_BLOCK_TO_CHECK} \
     --min-auction ${MINIMUM_AUCTION_ID_TO_CHECK} \
