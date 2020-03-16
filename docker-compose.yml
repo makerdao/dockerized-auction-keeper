@@ -8,4 +8,4 @@ services:
       - $PWD/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
       - $PWD/model-eth.sh:/opt/keeper/model-eth.sh
       - $PWD/my_environment_flip.sh:/opt/keeper/my_environment_flip.sh
-    command: /opt/keeper/flip-eth-a.sh
+    command: /opt/keeper/flip-eth-a.sh model-eth.sh
