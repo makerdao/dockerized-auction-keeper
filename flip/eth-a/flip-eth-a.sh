@@ -1,7 +1,7 @@
 #!/bin/bash
 dir="$(dirname "$0")"
 
-source my_environment_flip.sh  # Set the RPC host, account address, keys, and everything else
+source environment.sh  # Set the RPC host, account address, keys, and everything else
 source ${FULL_PATH_TO_KEEPER_DIRECTORY}/_virtualenv/bin/activate # Run virtual environment
 
 # Allows keepers to bid different prices
@@ -12,7 +12,7 @@ ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --rpc-port ${SERVER_ETH_RPC_PORT?:} \
     --rpc-timeout 30 \
     --eth-from ${ACCOUNT_ADDRESS?:} \
-    --eth-key ${ACCOUNT_KEY?:} \
+    --eth-key ${ACCOUNT_FLIP_ETH_A_KEY?:} \
     --type flip \
     --max-auctions 100 \
     --ilk ${ILK} \

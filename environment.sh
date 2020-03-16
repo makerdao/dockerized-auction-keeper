@@ -1,7 +1,9 @@
-SERVER_ETH_RPC_HOST=https://kovan-node-here
+SERVER_ETH_RPC_HOST=https://paritynodehere
 SERVER_ETH_RPC_PORT=8545
-ACCOUNT_ADDRESS=0x40418xxxxxxx
-ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt'
+ACCOUNT_ADDRESS=0x40418bxxxxxx
+
+# FLIP-ETH-A account
+ACCOUNT_FLIP_ETH_A_KEY='key_file=/opt/keeper/secrets/keystore-eth-flip-a.json,pass_file=/opt/keeper/secrets/password-eth-flip-a.txt'
 
 FULL_PATH_TO_KEEPER_DIRECTORY=/opt/keeper/auction-keeper
 DAI_IN_VAT=1000
