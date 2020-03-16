@@ -10,7 +10,8 @@ After following the setup procedure below, this keeper works out of the box unde
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
-- Uses a priciing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating in auctions
+- Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating in auctions
+- All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
 
 ### Install Prerequisite
 
@@ -41,7 +42,7 @@ https://docs.docker.com/compose/install/
 
 ### Run
 
-`docker-compose up flip-eth-a`
+`docker-compose up flip-eth-a | tee -a -i auction-keeper-flip-ETH-A.log`
 
 ### Optional additions
 
