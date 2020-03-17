@@ -2,17 +2,6 @@
 
 `dockerized-auction-keeper` contains a preconfigured [auction-keeper](https://github.com/makerdao/auction-keeper) that follows a simple FMV discount pricing model. With docker as the only prerequisite, this instance is well-suited for first-time auction keeper operators.
 
-After following the setup procedure below, this keeper works out of the box under the following configuration:
-- Bites unsafe vaults, kicks, and participates in up to 100 active ETH-A Flip auctions
-- Begins scan at a prescribed auction id - we recommend starting at:
-  - `mainnet` - 4500
-  - `kovan` - 1800
-- Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
-  - `mainnet` - 8928152
-  - `kovan 1.0.2` - 14764534
-- Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating
-- All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
-
 Note: Docker image will be created based on current master branch when you first run the keeper. If you want to rebuild image
 with latest master make sure keepers are stopped then run `./cleanup.sh` script
 
@@ -29,25 +18,57 @@ https://docs.docker.com/compose/install/
 
 ### Setup flip-eth-a keeper
 
-- place keystore and password file for account address under `secrets` directory
-- configure following variables in `my_environment_flip.sh` file:
+After following the setup procedure below, this keeper works out of the box under the following configuration:
+- Participates in up to 100 active ETH-A Flip auctions; it does not start new ones
+- Begins scan at a prescribed auction id - we recommend starting at:
+  - `mainnet` - 4500
+  - `kovan` - 1800
+- Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
+  - `mainnet` - 8928152
+  - `kovan 1.0.2` - 14764534
+- Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating
+- All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
+
+- place unlocked keystore and password file for account address under `secrets` directory
+- configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
     - `SERVER_ETH_RPC_PORT`: ETH RPC port  
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
-    - `ACCOUNT_ADDRESS`: address to use for bidding
-    - `ACCOUNT_FLIP_ETH_A_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
+    - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
+    - `FLIP_ACCOUNT_ADDRESS`: address to use for bidding
+    - `FLIP_ETH_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
-    `ACCOUNT_FLIP_ETH_A_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
-    - `DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
+    `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
+    - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
+    - `FLIP_MINIMUM_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
+    - `FLIP_ETH_DISCOUNT`: Discount from ETH's FMV, which will be used as the bid price
+    - `FLIP_GASPRICE`: Fixed GWei price used in bid participation
+
+### Setup flop keeper
+
+- place unlocked keystore and password file for account address under `secrets` directory
+- configure following variables in `environment_flip.sh` file:
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
+    - `SERVER_ETH_RPC_PORT`: ETH RPC port  
+    - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
-    - `MINIMUM_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
-    - `DISCOUNT`: Discount from ETH's FMV, which will be used as the bid price
-    - `GASPRICE`: Fixed GWei price used in bid participation
+    - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
+    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
+    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
+    Ex: if you put `keystore-flop.json` and `password-flop.txt` under `secrets` directory then var should be configured as
+    `FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'`
+    - `FLOP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
+    - `FLOP_MKR_DISCOUNT`: Discount from MKR's FMV, which will be used as the bid price
+    - `FLOP_GASPRICE`: Fixed GWei price used in bid participation
 
 ### Run
 
+flip-eth-a keeper
 `docker-compose up flip-eth-a | tee -a -i auction-keeper-flip-ETH-A.log`
+
+flop keeper
+`docker-compose up flop | tee -a -i auction-keeper-flop.log`
 
 ### Optional additions
 
@@ -68,7 +89,7 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flippe
       driver: "json-file"
       options:
         max-size: "100m"
-        max-file: "10" 
+        max-file: "10"
     command: /opt/keeper/flip-bat-a.sh model-bat.sh
 ```
 - start it as `docker-compose up flip-bat | tee -a -i auction-keeper-flip-BAT.log`

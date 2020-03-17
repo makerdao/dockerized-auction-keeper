@@ -11,14 +11,12 @@ ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --rpc-host ${SERVER_ETH_RPC_HOST:?} \
     --rpc-port ${SERVER_ETH_RPC_PORT?:} \
     --rpc-timeout 30 \
-    --eth-from ${FLIP_ACCOUNT_ADDRESS?:} \
-    --eth-key ${FLIP_ETH_A_ACCOUNT_KEY?:} \
-    --type flip \
+    --eth-from ${FLOP_ACCOUNT_ADDRESS?:} \
+    --eth-key ${FLOP_ACCOUNT_KEY?:} \
+    --type flop \
     --max-auctions 100 \
     --ethgasstation-api-key ${ETHGASSTATION_API_KEY} \
-    --vat-dai-target ${FLIP_DAI_IN_VAT} \
+    --vat-dai-target ${FLOP_DAI_IN_VAT} \
     --from-block ${FIRST_BLOCK_TO_CHECK} \
     --bid-only \
-    --ilk ${FLIP_ILK} \
-    --min-auction ${FLIP_MINIMUM_AUCTION_ID_TO_CHECK} \
     --model ${dir}/${MODEL}
