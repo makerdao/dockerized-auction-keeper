@@ -14,3 +14,17 @@ services:
         max-size: "100m"
         max-file: "10"
     command: /opt/keeper/flip-eth-a.sh model-eth.sh
+  flop:
+    build: .
+    image: makerdao/auction-keeper
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/flop/flop.sh:/opt/keeper/flop.sh
+      - $PWD/flop/model-mkr.sh:/opt/keeper/model-mkr.sh
+      - $PWD/environment.sh:/opt/keeper/environment.sh
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: /opt/keeper/flop.sh model-mkr.sh
