@@ -29,6 +29,7 @@ After following the setup procedure below, this keeper works out of the box unde
 - Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating
 - All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
 
+- Create a a folder in the root directory of the repo called `secrets`
 - place unlocked keystore and password file for account address under `secrets` directory
 - configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node. If using parity from this repository use `http://parity`
@@ -47,6 +48,7 @@ After following the setup procedure below, this keeper works out of the box unde
 
 ### Setup flop keeper
 
+- Create a a folder in the root directory of the repo called `secrets`
 - place unlocked keystore and password file for account address under `secrets` directory
 - configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node. If using parity from this repository use `http://parity`
@@ -74,7 +76,7 @@ flop keeper
 This will gracefully stop keeper and will exit DAI / collateral from Vat contract to keeper operating address
 
 flip-eth-a keeper
-`./stop-keeper.sh flip-eth-a`
+``./stop-keeper.sh flip-eth-a`
 
 flop keeper
 `./stop-keeper.sh flop`
