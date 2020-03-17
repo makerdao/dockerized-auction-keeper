@@ -30,8 +30,8 @@ After following the setup procedure below, this keeper works out of the box unde
 - All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
 
 - Create a a folder in the root directory of the repo called `secrets`
-- place unlocked keystore and password file for account address under `secrets` directory
-- configure following variables in `environment_flip.sh` file:
+- Place unlocked keystore and password file for account address under `secrets` directory
+- Configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node. If using parity from this repository use `http://parity`
     - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -49,8 +49,8 @@ After following the setup procedure below, this keeper works out of the box unde
 ### Setup flop keeper
 
 - Create a a folder in the root directory of the repo called `secrets`
-- place unlocked keystore and password file for account address under `secrets` directory
-- configure following variables in `environment_flip.sh` file:
+- Place unlocked keystore and password file for account address under `secrets` directory
+- Configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node. If using parity from this repository use `http://parity`
     - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -76,7 +76,7 @@ flop keeper
 This will gracefully stop keeper and will exit DAI / collateral from Vat contract to keeper operating address
 
 flip-eth-a keeper
-``./stop-keeper.sh flip-eth-a`
+`./stop-keeper.sh flip-eth-a`
 
 flop keeper
 `./stop-keeper.sh flop`
