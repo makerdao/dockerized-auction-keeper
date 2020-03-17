@@ -65,10 +65,19 @@ After following the setup procedure below, this keeper works out of the box unde
 ### Run
 
 flip-eth-a keeper
-`docker-compose up flip-eth-a | tee -a -i auction-keeper-flip-ETH-A.log`
+`./start-keeper.sh flip-eth-a | tee -a -i auction-keeper-flip-ETH-A.log`
 
 flop keeper
-`docker-compose up flop | tee -a -i auction-keeper-flop.log`
+`./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
+
+### Shutdown
+This will gracefully stop keeper and will exit DAI / collateral from Vat contract to keeper operating address
+
+flip-eth-a keeper
+`./stop-keeper.sh flip-eth-a`
+
+flop keeper
+`./stop-keeper.sh flop`
 
 ### Optional additions
 
@@ -80,6 +89,7 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flippe
   flip-bat:
     build: .
     image: makerdao/auction-keeper
+    container_name: flip-bat
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/flip/bat/flip-bat-a.sh:/opt/keeper/flip-bat.sh
@@ -92,7 +102,7 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flippe
         max-file: "10"
     command: /opt/keeper/flip-bat-a.sh model-bat.sh
 ```
-- start it as `docker-compose up flip-bat | tee -a -i auction-keeper-flip-BAT.log`
+- start it as `./start-keeper.sh flip-bat | tee -a -i auction-keeper-flip-BAT.log`
 
 A local parity node can also be started from this repository with:
 

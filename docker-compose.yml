@@ -3,6 +3,7 @@ services:
   flip-eth-a:
     build: .
     image: makerdao/auction-keeper
+    container_name: flip-eth-a
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/flip/eth-a/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
@@ -17,6 +18,7 @@ services:
   flop:
     build: .
     image: makerdao/auction-keeper
+    container_name: flop
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/flop/flop.sh:/opt/keeper/flop.sh
