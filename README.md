@@ -29,8 +29,9 @@ After following the setup procedure below, this keeper works out of the box unde
 - Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating
 - All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
 
-- place unlocked keystore and password file for account address under `secrets` directory
-- configure following variables in `environment_flip.sh` file:
+- Create a a folder in the root directory of the repo called `secrets`
+- Place unlocked keystore and password file for account address under `secrets` directory
+- Configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
     - `SERVER_ETH_RPC_PORT`: ETH RPC port  
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -47,8 +48,9 @@ After following the setup procedure below, this keeper works out of the box unde
 
 ### Setup flop keeper
 
-- place unlocked keystore and password file for account address under `secrets` directory
-- configure following variables in `environment_flip.sh` file:
+- Create a a folder in the root directory of the repo called `secrets`
+- Place unlocked keystore and password file for account address under `secrets` directory
+- Configure following variables in `environment_flip.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
     - `SERVER_ETH_RPC_PORT`: ETH RPC port  
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
