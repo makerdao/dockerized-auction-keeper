@@ -28,3 +28,29 @@ services:
         max-size: "100m"
         max-file: "10"
     command: /opt/keeper/flop.sh model-mkr.sh
+  parity:
+    image: parity/parity
+    restart: unless-stopped
+    volumes:
+      - ~/.local/share/io.parity.ethereum/docker/:/home/parity/.local/share/io.parity.ethereum/
+    ports:
+      - 8545:8545
+      - 30303:30303
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: [
+      "--jsonrpc-interface", "all",
+      "--jsonrpc-port", "8545",
+      "--mode", "active",
+      "--warp-barrier", "8950000",
+      "--num-verifiers", "8",
+      "--scale-verifiers",
+      "--no-color",
+      "--no-ipc",
+      "--no-ws",
+      "--min-peers=25",
+      "--max-peers=50"
+    ]
