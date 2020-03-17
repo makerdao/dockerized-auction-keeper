@@ -31,13 +31,13 @@ After following the setup procedure below, this keeper works out of the box unde
 
 - place unlocked keystore and password file for account address under `secrets` directory
 - configure following variables in `environment_flip.sh` file:
-    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
-    - `SERVER_ETH_RPC_PORT`: ETH RPC port  
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node. If using parity from this repository use `http://parity`
+    - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
+    - `FLIP_ETH_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
@@ -49,13 +49,13 @@ After following the setup procedure below, this keeper works out of the box unde
 
 - place unlocked keystore and password file for account address under `secrets` directory
 - configure following variables in `environment_flip.sh` file:
-    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
-    - `SERVER_ETH_RPC_PORT`: ETH RPC port  
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node. If using parity from this repository use `http://parity`
+    - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
+    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flop.json` and `password-flop.txt` under `secrets` directory then var should be configured as
     `FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'`
     - `FLOP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
@@ -93,6 +93,24 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flippe
     command: /opt/keeper/flip-bat-a.sh model-bat.sh
 ```
 - start it as `docker-compose up flip-bat | tee -a -i auction-keeper-flip-BAT.log`
+
+A local parity node can also be started from this repository with:
+
+```
+docker-compose up -d parity
+```
+
+- The configuration mounts a volume from `~/.local/share/io.parity.ethereum/docker/` meaning synchronization will persist between restarts.
+- out of the box parity will sync mainnet. To use Kovan, add `--chain kovan` to docker-compose.yml. e.g.:
+
+```yaml
+command: [
+  "--chain", "kovan",
+  "--warp",
+  "--warp-barrier", "14764534",
+```
+
+For information about recommended blocks to sync to see [Setup flip-eth-a keeper](#setup-flip-eth-a-keeper) section
 
 ## License
 See [COPYING](https://github.com/makerdao/dockerized-auction-keeper/blob/master/COPYING) file.

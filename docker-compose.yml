@@ -42,10 +42,11 @@ services:
         max-size: "100m"
         max-file: "10"
     command: [
+      "--warp",
+      "--warp-barrier", "8928152",
       "--jsonrpc-interface", "all",
       "--jsonrpc-port", "8545",
       "--mode", "active",
-      "--warp-barrier", "8950000",
       "--num-verifiers", "8",
       "--scale-verifiers",
       "--no-color",
