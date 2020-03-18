@@ -85,7 +85,7 @@ flop keeper
 Sample model implementation provided uses a fixed gas price for placing bids (see`FLIP_GASPRICE` and `FLOP_GASPRICE` in `environment.sh`).
 Dynamic gas price model can be implemented by querying prices from external APIs (as ethgasstation or other APIs)
 
-###### Dynamic gas price model using ethgasstation API
+##### Dynamic gas price model using ethgasstation API
 
 - configure following variables in `environment.sh` file:
 ```
@@ -119,6 +119,44 @@ done
 
 
 ```
+
+##### Dynamic gas price model using etherchain.org API
+- configure following variables in `environment.sh` file:
+```
+ETHERCHAIN_URL=https://www.etherchain.org/api/gasPriceOracle
+ETHERCHAIN_MODE=fastest # other options: safeLow, average, fast
+GASPRICE_MULTIPLIER=1
+```
+
+- modify `model-eth.sh` and `model-mkr.sh` to read and apply dynamic gasprice
+```
+#!/usr/bin/env bash
+
+while true; do
+
+   source environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+
+   body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
+
+   ethPrice=$(echo $body | jq '.ethereum.usd')
+
+   bidPrice=$(bc -l <<< "$ethPrice * (1-$FLIP_ETH_DISCOUNT)")
+
+   gas_body=$(curl -s -X GET "$ETHERCHAIN_URL" -H "accept: application/json")
+
+   echo $gas_body | jq '.fastest|tonumber'
+
+   gasPrice=$(bc -l <<< "$(echo $gas_body | jq '.'$ETHERCHAIN_MODE'|tonumber') * 1000000000 * $GASPRICE_MULTIPLIER")
+
+   echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${gasPrice}\"}"
+
+   sleep 25
+done
+
+
+
+```
+
 
 ### Optional additions
 
