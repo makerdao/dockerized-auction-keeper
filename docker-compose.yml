@@ -55,5 +55,6 @@ services:
       "--no-ipc",
       "--no-ws",
       "--min-peers=25",
-      "--max-peers=50"
+      "--max-peers=50",
+      "--no-ancient-blocks"
     ]
