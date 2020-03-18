@@ -144,8 +144,6 @@ while true; do
 
    gas_body=$(curl -s -X GET "$ETHERCHAIN_URL" -H "accept: application/json")
 
-   echo $gas_body | jq '.fastest|tonumber'
-
    gasPrice=$(bc -l <<< "$(echo $gas_body | jq '.'$ETHERCHAIN_MODE'|tonumber') * 1000000000 * $GASPRICE_MULTIPLIER")
 
    echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${gasPrice}\"}"
