@@ -29,16 +29,15 @@ After following the setup procedure below, this keeper works out of the box unde
 - Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating
 - All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
 
-- Create a a folder in the root directory of the repo called `secrets`
-- Place unlocked keystore and password file for account address under `secrets` directory
+- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` in the env.
 - Configure following variables in `environment.sh` file:
-    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
-    - `SERVER_ETH_RPC_PORT`: ETH RPC port  
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
+    - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
+    - `FLIP_ETH_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
@@ -48,16 +47,15 @@ After following the setup procedure below, this keeper works out of the box unde
 
 ### Setup flop keeper
 
-- Create a a folder in the root directory of the repo called `secrets`
-- Place unlocked keystore and password file for account address under `secrets` directory
+- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLOP_ACCOUNT_KEY` in the env.
 - Configure following variables in `environment.sh` file:
-    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
-    - `SERVER_ETH_RPC_PORT`: ETH RPC port  
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
+    - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory  
+    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flop.json` and `password-flop.txt` under `secrets` directory then var should be configured as
     `FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'`
     - `FLOP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
