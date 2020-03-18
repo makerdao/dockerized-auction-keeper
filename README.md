@@ -30,7 +30,7 @@ After following the setup procedure below, this keeper works out of the box unde
 - All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
 
 - place unlocked keystore and password file for account address under `secrets` directory
-- configure following variables in `environment_flip.sh` file:
+- configure following variables in `environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
     - `SERVER_ETH_RPC_PORT`: ETH RPC port  
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -48,7 +48,7 @@ After following the setup procedure below, this keeper works out of the box unde
 ### Setup flop keeper
 
 - place unlocked keystore and password file for account address under `secrets` directory
-- configure following variables in `environment_flip.sh` file:
+- configure following variables in `environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node  
     - `SERVER_ETH_RPC_PORT`: ETH RPC port  
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -69,6 +69,45 @@ flip-eth-a keeper
 
 flop keeper
 `docker-compose up flop | tee -a -i auction-keeper-flop.log`
+
+### Using a dynamic gas price model for bids
+Sample model implementation provided uses a fixed gas price for placing bids (see`FLIP_GASPRICE` and `FLOP_GASPRICE` in `environment.sh`).
+Dynamic gas price model can be implemented by querying prices from external APIs (as ethgasstation or other APIs)
+
+#### Dynamic gas price model using ethgasstation API
+
+- configure following variables in `environment.sh` file:
+```
+ETHGASSTATION_URL=https://ethgasstation.info/json/ethgasAPI.json?api-key=$ETHGASSTATION_API_KEY
+ETHGASSTATION_MODE=fastest # other options: safeLow, average, fast
+GASPRICE_MULTIPLIER=1 # increase this if you want to use higher price than the one reported (e.g. if 2 then will use 2 * fastest)
+```
+
+- modify `model-eth.sh` and `model-mkr.sh` to read and apply dynamic gasprice
+```
+#!/usr/bin/env bash
+
+while true; do
+
+   source environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+
+   body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
+
+   ethPrice=$(echo $body | jq '.ethereum.usd')
+
+   bidPrice=$(bc -l <<< "$ethPrice * (1-$FLIP_ETH_DISCOUNT)")
+
+   gas_body=$(curl -s -X GET "$ETHGASSTATION_URL" -H "accept: application/json")
+
+   gasPrice=$(bc -l <<< "$(echo $gas_body | jq '.'$ETHGASSTATION_MODE) * 100000000 * $GASPRICE_MULTIPLIER")
+
+   echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${gasPrice}\"}"
+
+   sleep 25
+done
+
+
+```
 
 ### Optional additions
 
