@@ -8,7 +8,7 @@ services:
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/flip/eth-a/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
       - $PWD/flip/eth-a/model-eth.sh:/opt/keeper/model-eth.sh
-      - $PWD/environment.sh:/opt/keeper/environment.sh
+      - $PWD/env/:/opt/keeper/env/
     logging:
       driver: "json-file"
       options:
@@ -23,7 +23,7 @@ services:
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/flop/flop.sh:/opt/keeper/flop.sh
       - $PWD/flop/model-mkr.sh:/opt/keeper/model-mkr.sh
-      - $PWD/environment.sh:/opt/keeper/environment.sh
+      - $PWD/env/:/opt/keeper/env/
     logging:
       driver: "json-file"
       options:
