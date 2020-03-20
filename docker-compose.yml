@@ -4,29 +4,44 @@ services:
     build: .
     image: makerdao/auction-keeper
     container_name: flip-eth-a
+    working_dir: /opt/keeper/flip-eth-a/
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
-      - $PWD/flip/eth-a/flip-eth-a.sh:/opt/keeper/flip-eth-a.sh
-      - $PWD/flip/eth-a/model-eth.sh:/opt/keeper/model-eth.sh
       - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/eth-a/:/opt/keeper/flip-eth-a/
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "10"
-    command: /opt/keeper/flip-eth-a.sh model-eth.sh
+    command: ./flip-eth-a.sh model-eth.sh
+  flip-bat-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-bat-a
+    working_dir: /opt/keeper/flip-bat-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/bat-a/:/opt/keeper/flip-bat-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-bat-a.sh model-bat.sh
   flop:
     build: .
     image: makerdao/auction-keeper
     container_name: flop
+    working_dir: /opt/keeper/flop/
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
-      - $PWD/flop/flop.sh:/opt/keeper/flop.sh
-      - $PWD/flop/model-mkr.sh:/opt/keeper/model-mkr.sh
       - $PWD/env/:/opt/keeper/env/
+      - $PWD/flop/:/opt/keeper/flop/
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "10"
-    command: /opt/keeper/flop.sh model-mkr.sh
+    command: ./flop.sh model-mkr.sh

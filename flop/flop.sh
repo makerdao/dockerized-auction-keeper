@@ -1,7 +1,7 @@
 #!/bin/bash
 dir="$(dirname "$0")"
 
-source env/environment.sh  # Set the RPC host, account address, keys, and everything else
+source ../env/environment.sh  # Set the RPC host, account address, keys, and everything else
 source ${FULL_PATH_TO_KEEPER_DIRECTORY}/_virtualenv/bin/activate # Run virtual environment
 
 # Allows keepers to bid different prices

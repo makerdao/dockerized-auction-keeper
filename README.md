@@ -16,39 +16,41 @@ https://docs.docker.com/install/
 https://docs.docker.com/compose/install/
 ```
 
-### Setup flip-eth-a keeper
+### Setup flip keepers
 
 After following the setup procedure below, this keeper works out of the box under the following configuration:
-- Participates in up to 100 active ETH-A Flip auctions; it does not start new ones
+- Participates in up to 100 active ETH-A / ETH-B Flip auctions; it does not start new ones
 - Begins scan at a prescribed auction id - we recommend starting at:
   - `mainnet` - 4500
   - `kovan` - 1800
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
-- Uses a pricing model that tracks the price of ETH via a public API and applies a `DISCOUNT` before participating
-- All logs from the keeper are saved and appended to a single `auction-keeper-flip-ETH-A.log` file
+- Uses a pricing model that tracks the price of ETH / BAT via a public API and applies a `DISCOUNT` before participating
+- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log`)
 
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` in the env.
-- Configure following variables in `environment.sh` file:
+- Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
     - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    - `FLIP_ETH_A_ACCOUNT_KEY` and `FLIP_BAT_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
+    or
+    `FLIP_BAT_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-a.json,pass_file=/opt/keeper/secrets/password-flip-a.txt'`
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
     - `FLIP_MINIMUM_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
-    - `FLIP_ETH_DISCOUNT`: Discount from ETH's FMV, which will be used as the bid price
+    - `FLIP_ETH_DISCOUNT` and `FLIP_BAT_DISCOUNT`: Discount from ETH's or BAT's FMV, which will be used as the bid price
     - `FLIP_GASPRICE`: Fixed GWei price used in bid participation
 
 ### Setup flop keeper
 
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLOP_ACCOUNT_KEY` in the env.
-- Configure following variables in `environment.sh` file:
+- Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
     - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -67,6 +69,9 @@ After following the setup procedure below, this keeper works out of the box unde
 flip-eth-a keeper
 `./start-keeper.sh flip-eth-a | tee -a -i auction-keeper-flip-ETH-A.log`
 
+flip-bat-a keeper
+`./start-keeper.sh flip-bat-a | tee -a -i auction-keeper-flip-BAT-A.log`
+
 flop keeper
 `./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
 
@@ -75,6 +80,9 @@ This will gracefully stop keeper and will exit DAI / collateral from Vat contrac
 
 flip-eth-a keeper
 `./stop-keeper.sh flip-eth-a`
+
+flip-bat-a keeper
+`./stop-keeper.sh flip-bat-a`
 
 flop keeper
 `./stop-keeper.sh flop`
@@ -98,7 +106,7 @@ GASPRICE_MULTIPLIER=1 # increase this if you want to use higher price than the o
 
 while true; do
 
-   source env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+   source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
    body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
 
@@ -132,7 +140,7 @@ GASPRICE_MULTIPLIER=1
 
 while true; do
 
-   source env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+   source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
    body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
 
@@ -156,28 +164,28 @@ done
 
 ### Optional additions
 
-Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flipper
-- add startup scripts `flip-bat.sh` and `model-bat.sh` files under `flip/bat` directory
-- configure any new env vars used by startup scripts in `env/environment.sh` script (e.g. `ACCOUNT_FLIP_BAT_KEY`)
+Other auction keepers can be added in `docker-compose.yml` e.g. for an USDC flipper
+- add startup scripts `flip-usdc.sh` and `model-usdc.sh` files under `flip/usdc` directory
+- configure any new env vars used by startup scripts in `env/environment.sh` script (e.g. `ACCOUNT_FLIP_USDC_KEY`)
 - add keeper in `docker-compose.yml`
 ```
-  flip-bat:
+  flip-usdc:
     build: .
     image: makerdao/auction-keeper
-    container_name: flip-bat
+    container_name: flip-usdc
+    working_dir: /opt/keeper/flip-usdc/
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
-      - $PWD/flip/bat/flip-bat-a.sh:/opt/keeper/flip-bat.sh
-      - $PWD/flip/bat/model-bat.sh:/opt/keeper/model-bat.sh
       - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/usdc/:/opt/keeper/usdc/
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "10"
-    command: /opt/keeper/flip-bat-a.sh model-bat.sh
+    command: ./flip-usdc.sh model-usdc.sh
 ```
-- start it as `./start-keeper.sh flip-bat | tee -a -i auction-keeper-flip-BAT.log`
+- start it as `./start-keeper.sh flip-usdc | tee -a -i auction-keeper-flip-USDC.log`
 
 ## License
 See [COPYING](https://github.com/makerdao/dockerized-auction-keeper/blob/master/COPYING) file.

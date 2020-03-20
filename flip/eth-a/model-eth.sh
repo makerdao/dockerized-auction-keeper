@@ -2,7 +2,7 @@
 
 while true; do
 
-   source env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+   source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
    body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
 
