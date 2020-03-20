@@ -80,12 +80,12 @@ flop keeper
 `./stop-keeper.sh flop`
 
 ### Using a dynamic gas price model for bids
-Sample model implementation provided uses a fixed gas price for placing bids (see`FLIP_GASPRICE` and `FLOP_GASPRICE` in `environment.sh`).
+Sample model implementation provided uses a fixed gas price for placing bids (see`FLIP_GASPRICE` and `FLOP_GASPRICE` in `env/environment.sh`).
 Dynamic gas price model can be implemented by querying prices from external APIs (as ethgasstation or other APIs)
 
 ##### Dynamic gas price model using ethgasstation API
 
-- configure following variables in `environment.sh` file:
+- configure following variables in `env/environment.sh` file:
 ```
 ETHGASSTATION_URL=https://ethgasstation.info/json/ethgasAPI.json?api-key=$ETHGASSTATION_API_KEY
 ETHGASSTATION_MODE=fastest # other options: safeLow, average, fast
@@ -98,7 +98,7 @@ GASPRICE_MULTIPLIER=1 # increase this if you want to use higher price than the o
 
 while true; do
 
-   source environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+   source env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
    body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
 
@@ -119,7 +119,7 @@ done
 ```
 
 ##### Dynamic gas price model using etherchain.org API
-- configure following variables in `environment.sh` file:
+- configure following variables in `env/environment.sh` file:
 ```
 ETHERCHAIN_URL=https://www.etherchain.org/api/gasPriceOracle
 ETHERCHAIN_MODE=fastest # other options: safeLow, average, fast
@@ -132,7 +132,7 @@ GASPRICE_MULTIPLIER=1
 
 while true; do
 
-   source environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+   source env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
    body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
 
@@ -158,7 +158,7 @@ done
 
 Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flipper
 - add startup scripts `flip-bat.sh` and `model-bat.sh` files under `flip/bat` directory
-- configure any new env vars used by startup scripts in `environment.sh` script (e.g. `ACCOUNT_FLIP_BAT_KEY`)
+- configure any new env vars used by startup scripts in `env/environment.sh` script (e.g. `ACCOUNT_FLIP_BAT_KEY`)
 - add keeper in `docker-compose.yml`
 ```
   flip-bat:
@@ -169,7 +169,7 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for a BAT flippe
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/flip/bat/flip-bat-a.sh:/opt/keeper/flip-bat.sh
       - $PWD/flip/bat/model-bat.sh:/opt/keeper/model-bat.sh
-      - $PWD/environment.sh:/opt/keeper/environment.sh
+      - $PWD/env/:/opt/keeper/env/
     logging:
       driver: "json-file"
       options:
