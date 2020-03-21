@@ -2,7 +2,7 @@
 
 while true; do
 
-  source ../env/environment.sh # share BAT_URL, DISCOUNT, and GASPRICE
+  source ../env/environment.sh # share BAT_URL, DISCOUNT, and GAS_PERCENT
 
   # dynamic gas price
   res=$(curl -s -X POST \
@@ -19,7 +19,7 @@ while true; do
   batPrice=$(echo $body | jq '."basic-attention-token".usd')
   bidPrice=$(bc -l <<< "$batPrice * (1-$FLIP_BAT_DISCOUNT)")
 
-  echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${FLIP_GASPRICE}\"}"
+  echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${gasPrice}\"}"
 
   sleep 25
 done
