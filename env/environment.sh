@@ -1,7 +1,7 @@
 SERVER_ETH_RPC_HOST=https://paritynodehere
 SERVER_ETH_RPC_PORT=8545
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
-
+GAS_PERCENT=0.40
 FULL_PATH_TO_KEEPER_DIRECTORY=/opt/keeper/auction-keeper
 FIRST_BLOCK_TO_CHECK=14764534
 
@@ -16,7 +16,6 @@ FLIP_MINIMUM_AUCTION_ID_TO_CHECK=1800
 
 FLIP_ETH_URL="https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
 FLIP_ETH_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
-FLIP_GASPRICE=100000000000 # Fixed
 
 
 ###### FLOP Config ######
@@ -26,4 +25,3 @@ FLOP_DAI_IN_VAT=5000000
 
 FLOP_MKR_URL="https://api.coingecko.com/api/v3/simple/price?ids=maker&vs_currencies=usd"
 FLOP_MKR_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
-FLOP_GASPRICE=100000000000 # Fixed
