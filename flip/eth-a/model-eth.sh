@@ -2,7 +2,7 @@
 
 while true; do
 
-  source env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+  source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
 
   # dynamic gas price
   res=$(curl -s -X POST \
