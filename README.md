@@ -130,6 +130,14 @@ Other auction keepers can be added in `docker-compose.yml` e.g. for an USDC flip
 ```
 - start it as `./start-keeper.sh flip-usdc | tee -a -i auction-keeper-flip-USDC.log`
 
+### Note on using Windows Subsystem for Linux
+As Docker Desktop is not able to access the filesystem of WSL, you need to copy `dockerized-aution-keeper` somewhere in the `/c/` path and run it from there. e.g. `/c/Users/username/dev/dockerized-auction-keeper` instead of `/home/username/dev/dockerized-auction-keeper`. 
+
+Running `./start-keeper.sh flip-eth-a` from a WSL path will generate this error:
+```
+ERROR: for flip-eth-a  Cannot start service flip-eth-a: OCI runtime create failed: container_linux.go:346: starting container process caused "exec: \"./flip-eth-a.sh\": stat ./flip-eth-a.sh: no such file or directory": unknown
+```
+
 ## License
 See [COPYING](https://github.com/makerdao/dockerized-auction-keeper/blob/master/COPYING) file.
 
