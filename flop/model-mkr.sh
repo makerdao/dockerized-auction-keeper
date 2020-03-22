@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 
+# dynamic gas library
+source ../env/dynamic_gas.sh
+
 while true; do
 
-   source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
+  # share ETH_URL, DISCOUNT, and GASPRICE_MULTIPLIER
+  source ../env/environment.sh
 
-   body=$(curl -s -X GET "$FLOP_MKR_URL" -H "accept: application/json")
+  # dynamic bid price
+  body=$(curl -s -X GET "${FLOP_MKR_URL}" -H "accept: application/json")
+  mkrPrice=$(echo $body | jq '.maker.usd')
+  bidPrice=$(bc -l <<< "${mkrPrice} * (1-${FLOP_MKR_DISCOUNT})")
 
-   mkrPrice=$(echo $body | jq '.maker.usd')
+  echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"$(dynamic_gas)\"}"
 
-   bidPrice=$(bc -l <<< "$mkrPrice * (1-$FLOP_MKR_DISCOUNT)")
-
-   echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${FLOP_GASPRICE}\"}"
-
-   sleep 25
+  sleep 25
 done

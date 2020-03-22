@@ -34,6 +34,7 @@ After following the setup procedure below, this keeper works out of the box unde
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
     - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
+    - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ACCOUNT_ADDRESS`: address to use for bidding
     - `FLIP_ETH_A_ACCOUNT_KEY` and `FLIP_BAT_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
@@ -45,7 +46,6 @@ After following the setup procedure below, this keeper works out of the box unde
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
     - `FLIP_MINIMUM_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ETH_DISCOUNT` and `FLIP_BAT_DISCOUNT`: Discount from ETH's or BAT's FMV, which will be used as the bid price
-    - `FLIP_GASPRICE`: Fixed GWei price used in bid participation
 
 ### Setup flop keeper
 
@@ -54,6 +54,7 @@ After following the setup procedure below, this keeper works out of the box unde
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
     - `SERVER_ETH_RPC_PORT`: ETH RPC port
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
+    - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
     - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
@@ -62,7 +63,6 @@ After following the setup procedure below, this keeper works out of the box unde
     `FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'`
     - `FLOP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
     - `FLOP_MKR_DISCOUNT`: Discount from MKR's FMV, which will be used as the bid price
-    - `FLOP_GASPRICE`: Fixed GWei price used in bid participation
 
 ### Run
 
@@ -88,79 +88,22 @@ flop keeper
 `./stop-keeper.sh flop`
 
 ### Using a dynamic gas price model for bids
-Sample model implementation provided uses a fixed gas price for placing bids (see`FLIP_GASPRICE` and `FLOP_GASPRICE` in `env/environment.sh`).
-Dynamic gas price model can be implemented by querying prices from external APIs (as ethgasstation or other APIs)
-
-##### Dynamic gas price model using ethgasstation API
 
 - configure following variables in `env/environment.sh` file:
 ```
-ETHGASSTATION_URL=https://ethgasstation.info/json/ethgasAPI.json?api-key=$ETHGASSTATION_API_KEY
-ETHGASSTATION_MODE=fastest # other options: safeLow, average, fast
-GASPRICE_MULTIPLIER=1 # increase this if you want to use higher price than the one reported (e.g. if 2 then will use 2 * fastest)
+# Dynamic Gas Price Model
+# 0 = get the gas price from the node (default)
+# 1 = get the gas price from ethgasstation.info
+#     must set ETHGASSTATION_API_KEY
+# 2 = get the gas price from etherchain.org
+GAS_MODE=0
+# increase this if you want to use higher price than the one reported
+# (e.g. if 2.0 then will use 2 * fastest)
+GASPRICE_MULTIPLIER=1.4
+# ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
+# ethgasstation.info for dynamic gas, otherwise we will simply check the node.
+ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
 ```
-
-- modify `model-eth.sh` and `model-mkr.sh` to read and apply dynamic gasprice
-```
-#!/usr/bin/env bash
-
-while true; do
-
-   source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
-
-   body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
-
-   ethPrice=$(echo $body | jq '.ethereum.usd')
-
-   bidPrice=$(bc -l <<< "$ethPrice * (1-$FLIP_ETH_DISCOUNT)")
-
-   gas_body=$(curl -s -X GET "$ETHGASSTATION_URL" -H "accept: application/json")
-
-   gasPrice=$(bc -l <<< "$(echo $gas_body | jq '.'$ETHGASSTATION_MODE) * 100000000 * $GASPRICE_MULTIPLIER")
-
-   echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${gasPrice}\"}"
-
-   sleep 25
-done
-
-
-```
-
-##### Dynamic gas price model using etherchain.org API
-- configure following variables in `env/environment.sh` file:
-```
-ETHERCHAIN_URL=https://www.etherchain.org/api/gasPriceOracle
-ETHERCHAIN_MODE=fastest # other options: safeLow, average, fast
-GASPRICE_MULTIPLIER=1
-```
-
-- modify `model-eth.sh` and `model-mkr.sh` to read and apply dynamic gasprice
-```
-#!/usr/bin/env bash
-
-while true; do
-
-   source ../env/environment.sh  # share ETH_URL, DISCOUNT, and GASPRICE
-
-   body=$(curl -s -X GET "$FLIP_ETH_URL" -H "accept: application/json")
-
-   ethPrice=$(echo $body | jq '.ethereum.usd')
-
-   bidPrice=$(bc -l <<< "$ethPrice * (1-$FLIP_ETH_DISCOUNT)")
-
-   gas_body=$(curl -s -X GET "$ETHERCHAIN_URL" -H "accept: application/json")
-
-   gasPrice=$(bc -l <<< "$(echo $gas_body | jq '.'$ETHERCHAIN_MODE'|tonumber') * 1000000000 * $GASPRICE_MULTIPLIER")
-
-   echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"${gasPrice}\"}"
-
-   sleep 25
-done
-
-
-
-```
-
 
 ### Optional additions
 
