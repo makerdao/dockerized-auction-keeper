@@ -19,6 +19,14 @@ dynamic_gas()
       | bc -l
     )
     gas=$(bc <<< "${res} * ${SCALE_GWEI}")
+  elif [[ $GAS_MODE = 3 ]]; then
+    res=$(curl -s -X GET \
+      -H "accept: application/json" \
+      "${POANETWORK_URL:-https://gasprice.poa.network}" \
+      | jq '.instant' \
+      | bc -l
+    )
+    gas=$(bc <<< "${res} * ${SCALE_GWEI}")
   else
     res=$(curl -s -X POST \
       -H "Content-Type: application/json" \
@@ -31,4 +39,15 @@ dynamic_gas()
   fi
 
   echo $(bc -l <<< "scale=0; (${gas} * $GASPRICE_MULTIPLIER)/1")
+}
+
+dynamic_gas_params()
+{
+  if [[ $GAS_MODE = 1 ]]; then
+    echo "--ethgasstation-api-key ${ETHGASSTATION_API_KEY}"
+  elif [[ $GAS_MODE = 2 ]]; then
+    echo "--etherchain-gas-price"
+  elif [[ $GAS_MODE = 3 ]]; then
+    echo "--poanetwork-gas-price --poanetwork-url ${POANETWORK_URL:-https://gasprice.poa.network}"
+  fi
 }

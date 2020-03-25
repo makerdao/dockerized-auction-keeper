@@ -7,6 +7,8 @@ SERVER_ETH_RPC_PORT=8545
 # 1 = get the gas price from ethgasstation.info
 #     must set ETHGASSTATION_API_KEY
 # 2 = get the gas price from etherchain.org
+# 3 = get the gas price from poanetwork
+#     set POANETWORK_URL env var to point to a self hosted server e.g. POANETWORK_URL=http://localhost:8000
 GAS_MODE=0
 # increase this if you want to use higher price than the one reported
 # (e.g. if 2.0 then will use 2 * fast)
