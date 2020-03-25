@@ -104,6 +104,8 @@ flop keeper
 # 1 = get the gas price from ethgasstation.info
 #     must set ETHGASSTATION_API_KEY
 # 2 = get the gas price from etherchain.org
+# 3 = get the gas price from poanetwork
+#     set POANETWORK_URL env var to point to a self hosted server e.g. POANETWORK_URL=http://localhost:8000
 GAS_MODE=0
 # increase this if you want to use higher price than the one reported
 # (e.g. if 2.0 then will use 2 * fastest)
@@ -111,7 +113,8 @@ GASPRICE_MULTIPLIER=1.4
 # ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
-```
+```  
+Note: this configuration determines keeper gas price strategy as explained in https://github.com/makerdao/auction-keeper#gas-price-strategy 
 
 ### Optional additions
 
