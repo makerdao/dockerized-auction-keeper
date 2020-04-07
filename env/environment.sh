@@ -1,5 +1,5 @@
 # host and port
-SERVER_ETH_RPC_HOST=https://paritynodehere:8545
+SERVER_ETH_RPC_HOST=https://localhost:8545
 
 # Dynamic Gas Price Model
 # 0 = get the gas price from the node (default)
