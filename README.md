@@ -31,8 +31,7 @@ After following the setup procedure below, this keeper works out of the box unde
 
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` in the env.
 - Configure following variables in `env/environment.sh` file:
-    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
-    - `SERVER_ETH_RPC_PORT`: ETH RPC port
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
@@ -53,8 +52,7 @@ After following the setup procedure below, this keeper works out of the box unde
 
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLOP_ACCOUNT_KEY` in the env.
 - Configure following variables in `env/environment.sh` file:
-    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node
-    - `SERVER_ETH_RPC_PORT`: ETH RPC port
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
