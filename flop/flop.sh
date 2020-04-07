@@ -10,7 +10,6 @@ MODEL=$1
 
 ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --rpc-host ${SERVER_ETH_RPC_HOST:?} \
-    --rpc-port ${SERVER_ETH_RPC_PORT?:} \
     --rpc-timeout 30 \
     --eth-from ${FLOP_ACCOUNT_ADDRESS?:} \
     --eth-key ${FLOP_ACCOUNT_KEY?:} \
