@@ -31,7 +31,7 @@ dynamic_gas()
     res=$(curl -s -X POST \
       -H "Content-Type: application/json" \
       --data "{\"jsonrpc\":\"2.0\",\"method\":\"eth_gasPrice\",\"params\":[],\"id\":${RANDOM}}" \
-      ${SERVER_ETH_RPC_HOST}:${SERVER_ETH_RPC_PORT} \
+      ${SERVER_ETH_RPC_HOST} \
       | jq -r '.result' \
       | sed 's/0x//' \
     )
