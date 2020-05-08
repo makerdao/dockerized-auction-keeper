@@ -21,7 +21,7 @@ https://docs.docker.com/compose/install/
 After following the setup procedure below, this keeper works out of the box under the following configuration:
 - Participates in up to 100 active ETH-A or BAT-A or USDC-A or WBTC-A Flip auctions; it does not start new ones
 - Begins scan at a prescribed auction id - we recommend starting at:
-  - `mainnet` - 4500 for `ETH` and `BAT`, 0 for `WBTC`
+  - `mainnet` - 4500 for `ETH`, 500 for `BAT` and 0 for `WBTC`
   - `kovan` - 1800
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
@@ -84,7 +84,8 @@ flop keeper
 `./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
 
 ### Shutdown
-This will gracefully stop keeper and will exit DAI / collateral from Vat contract to keeper operating address
+This will gracefully stop keeper and will exit DAI / collateral from Vat contract to keeper operating address.
+The shutdown command should be issued from the same directory as the run command but in another console instance.
 
 flip-eth-a keeper
 `./stop-keeper.sh flip-eth-a`
