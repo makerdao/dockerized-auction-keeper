@@ -10,15 +10,15 @@ MODEL=$1
 
 ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --rpc-host ${SERVER_ETH_RPC_HOST:?} \
-    --rpc-timeout 30 \
-    --eth-from ${FLIP_ACCOUNT_ADDRESS?:} \
+    --rpc-timeout 300 \
+    --eth-from ${FLIP_BAT_A_ACCOUNT_ADDRESS?:} \
     --eth-key ${FLIP_BAT_A_ACCOUNT_KEY?:} \
     --type flip \
     --max-auctions 100 \
     $(dynamic_gas_params) \
-    --vat-dai-target ${FLIP_DAI_IN_VAT} \
+    --vat-dai-target ${FLIP_BAT_A_DAI_IN_VAT} \
     --from-block ${FIRST_BLOCK_TO_CHECK} \
-    --ilk ${FLIP_ILK_BAT} \
+    --ilk ${FLIP_ILK_BAT_A} \
     --bid-only \
-    --min-auction ${FLIP_MINIMUM_AUCTION_ID_TO_CHECK} \
+    --min-auction ${FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK} \
     --model ${dir}/${MODEL}
