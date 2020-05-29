@@ -46,6 +46,15 @@ FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK=0
 FLIP_USDC_URL="https://api.coingecko.com/api/v3/simple/price?ids=usd-coin&vs_currencies=usd"
 FLIP_USDC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-USDC-B Config ######
+FLIP_USDC_B_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_USDC_B_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-usdc-b.json,pass_file=/opt/keeper/secrets/password-flip-usdc-b.txt'
+FLIP_USDC_B_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_USDC_B=USDC-B
+FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK=0
+FLIP_USDC_URL="https://api.coingecko.com/api/v3/simple/price?ids=usd-coin&vs_currencies=usd"
+FLIP_USDC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLIP-WBTC-A Config ######
 FLIP_WBTC_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLIP_WBTC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-wbtc-a.json,pass_file=/opt/keeper/secrets/password-flip-wbtc-a.txt'
