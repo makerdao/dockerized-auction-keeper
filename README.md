@@ -84,7 +84,7 @@ flip-wbtc-a keeper
 `./start-keeper.sh flip-wbtc-a | tee -a -i auction-keeper-flip-WBTC-A.log`
 
 flip-tusd-a keeper
-`./start-keeper.sh flip-tusd-a | tee -a -i auction-keeper-flip-TSUD-A.log`
+`./start-keeper.sh flip-tusd-a | tee -a -i auction-keeper-flip-TUSD-A.log`
 
 flop keeper
 `./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
