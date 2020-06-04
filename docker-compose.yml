@@ -45,6 +45,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-usdc-a.sh model-usdc.sh
+  flip-usdc-b:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-usdc-b
+    working_dir: /opt/keeper/flip-usdc-b/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/usdc-b/:/opt/keeper/flip-usdc-b/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-usdc-b.sh model-usdc.sh
   flip-wbtc-a:
     build: .
     image: makerdao/auction-keeper
