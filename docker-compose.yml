@@ -75,6 +75,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-wbtc-a.sh model-wbtc.sh
+  flip-tusd-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-tusd-a
+    working_dir: /opt/keeper/flip-tusd-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/tusd-a/:/opt/keeper/flip-tusd-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-tusd-a.sh model-tusd.sh
   flop:
     build: .
     image: makerdao/auction-keeper

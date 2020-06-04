@@ -64,6 +64,15 @@ FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK=2
 FLIP_WBTC_URL="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
 FLIP_WBTC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-TUSD-A Config ######
+FLIP_TUSD_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_TUSD_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-tusd-a.json,pass_file=/opt/keeper/secrets/password-flip-tusd-a.txt'
+FLIP_TUSD_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_TUSD_A=TUSD-A
+FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK=0
+FLIP_TUSD_URL="https://api.coingecko.com/api/v3/simple/price?ids=true-usd&vs_currencies=usd"
+FLIP_TUSD_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'
