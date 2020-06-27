@@ -90,6 +90,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-tusd-a.sh model-tusd.sh
+  flip-knc-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-knc-a
+    working_dir: /opt/keeper/flip-knc-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/knc-a/:/opt/keeper/flip-knc-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-knc-a.sh model-knc.sh
   flip-zrx-a:
     build: .
     image: makerdao/auction-keeper
