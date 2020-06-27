@@ -19,24 +19,24 @@ https://docs.docker.com/compose/install/
 ### Setup flip keepers
 
 After following the setup procedure below, this keeper works out of the box under the following configuration:
-- Participates in up to 100 active ETH-A or BAT-A or USDC-A or USDC-B or WBTC-A or TUSD-A or Flip auctions; it does not start new ones
+- Participates in up to 100 active ETH-A or BAT-A or USDC-A or USDC-B or WBTC-A or TUSD-A or ZRX-A or Flip auctions; it does not start new ones
 - Begins scan at a prescribed auction id - we recommend starting at:
   - `mainnet` - 4500 for `ETH`, 500 for `BAT` and 0 for `WBTC`
   - `kovan` - 1800
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
-- Uses a pricing model that tracks the price of ETH | BAT | USDC | WBTC | TUSD via a public API and applies a `DISCOUNT` before participating
-- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log`)
+- Uses a pricing model that tracks the price of ETH | BAT | USDC | WBTC | TUSD | ZRX via a public API and applies a `DISCOUNT` before participating
+- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log` or `auction-keeper-flip-ZRX-A.log`)
 
-- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` in the env.
+- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` in the env.
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
-    - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS` | `FLIP_ZRX_A_ACCOUNT_ADDRESS`: address to use for bidding
+    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json,pass_file=/opt/keeper/secrets/password-flip-eth-a.txt'`
@@ -50,10 +50,12 @@ After following the setup procedure below, this keeper works out of the box unde
     `FLIP_WBTC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-wbtc-a.json,pass_file=/opt/keeper/secrets/password-flip-wbtc-a.txt'`
     or
     `FLIP_TUSD_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-tusd-a.json,pass_file=/opt/keeper/secrets/password-flip-tusd-a.txt'`
+    or
+    `FLIP_ZRX_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-zrx-a.json,pass_file=/opt/keeper/secrets/password-flip-zrx-a.txt'`
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
-    - `FLIP_ETH_A_DAI_IN_VAT` | `FLIP_BAT_A_DAI_IN_VAT` | `FLIP_USDC_A_DAI_IN_VAT` | `FLIP_USDC_B_DAI_IN_VAT` | `FLIP_WBTC_A_DAI_IN_VAT` | `FLIP_TUSD_A_DAI_IN_VAT`: Amount of Dai in Vat per collateral type
-    - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
-    - `FLIP_ETH_A_DISCOUNT` | `FLIP_BAT_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_WBTC_A_DISCOUNT` | `FLIP_TUSD_A_DISCOUNT`: Discount from ETH's or BAT's or USDC's FMV or WBTC's FMV, which will be used as the bid price
+    - `FLIP_ETH_A_DAI_IN_VAT` | `FLIP_BAT_A_DAI_IN_VAT` | `FLIP_USDC_A_DAI_IN_VAT` | `FLIP_USDC_B_DAI_IN_VAT` | `FLIP_WBTC_A_DAI_IN_VAT` | `FLIP_TUSD_A_DAI_IN_VAT` | `FLIP_ZRX_A_DAI_IN_VAT`: Amount of Dai in Vat per collateral type
+    - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
+    - `FLIP_ETH_A_DISCOUNT` | `FLIP_BAT_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_WBTC_A_DISCOUNT` | `FLIP_TUSD_A_DISCOUNT` | `FLIP_ZRX_A_DISCOUNT`: Discount from ETH's or BAT's or USDC's FMV or WBTC's FMV, which will be used as the bid price
 
 ### Setup flop keeper
 
@@ -90,6 +92,9 @@ flip-wbtc-a keeper
 
 flip-tusd-a keeper
 `./start-keeper.sh flip-tusd-a | tee -a -i auction-keeper-flip-TUSD-A.log`
+
+flip-zrx-a keeper
+`./start-keeper.sh flip-zrx-a | tee -a -i auction-keeper-flip-ZRX-A.log`
 
 flop keeper
 `./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
