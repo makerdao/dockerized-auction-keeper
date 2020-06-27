@@ -82,6 +82,15 @@ FLIP_MINIMUM_KNC_A_AUCTION_ID_TO_CHECK=0
 FLIP_KNC_URL="https://api.coingecko.com/api/v3/simple/price?ids=kyber-network&vs_currencies=usd"
 FLIP_KNC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-ZRX-A Config ######
+FLIP_ZRX_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_ZRX_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-zrx-a.json,pass_file=/opt/keeper/secrets/password-flip-zrx-a.txt'
+FLIP_ZRX_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_ZRX_A=ZRX-A
+FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK=0
+FLIP_ZRX_URL="https://api.coingecko.com/api/v3/simple/price?ids=0x&vs_currencies=usd"
+FLIP_ZRX_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'

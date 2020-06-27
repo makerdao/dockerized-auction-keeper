@@ -105,6 +105,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-knc-a.sh model-knc.sh
+  flip-zrx-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-zrx-a
+    working_dir: /opt/keeper/flip-zrx-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/zrx-a/:/opt/keeper/flip-zrx-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-zrx-a.sh model-zrx.sh
   flop:
     build: .
     image: makerdao/auction-keeper
