@@ -120,6 +120,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-zrx-a.sh model-zrx.sh
+  flip-mana-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-mana-a
+    working_dir: /opt/keeper/flip-mana-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/mana-a/:/opt/keeper/flip-mana-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-mana-a.sh model-mana.sh
   flop:
     build: .
     image: makerdao/auction-keeper

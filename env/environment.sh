@@ -16,7 +16,7 @@ GASPRICE_MULTIPLIER=1.6
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
 FULL_PATH_TO_KEEPER_DIRECTORY=/opt/keeper/auction-keeper
-FIRST_BLOCK_TO_CHECK=10142593
+FIRST_BLOCK_TO_CHECK=10549263
 DAI_IN_VAT=10000
 
 ###### FLIP-ETH-A Config ######
@@ -24,7 +24,7 @@ FLIP_ETH_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json,pass_file=/opt/keeper/secrets/password-flip-eth-a.txt'
 FLIP_ETH_A_DAI_IN_VAT=${DAI_IN_VAT}
 FLIP_ILK_ETH_A=ETH-A
-FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK=4914
+FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK=0
 FLIP_ETH_URL="https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
 FLIP_ETH_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
@@ -33,7 +33,7 @@ FLIP_BAT_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLIP_BAT_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-bat-a.json,pass_file=/opt/keeper/secrets/password-flip-bat-a.txt'
 FLIP_BAT_A_DAI_IN_VAT=${DAI_IN_VAT}
 FLIP_ILK_BAT_A=BAT-A
-FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK=471
+FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK=0
 FLIP_BAT_URL="https://api.coingecko.com/api/v3/simple/price?ids=basic-attention-token&vs_currencies=usd"
 FLIP_BAT_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
@@ -60,7 +60,7 @@ FLIP_WBTC_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLIP_WBTC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-wbtc-a.json,pass_file=/opt/keeper/secrets/password-flip-wbtc-a.txt'
 FLIP_WBTC_A_DAI_IN_VAT=${DAI_IN_VAT}
 FLIP_ILK_WBTC_A=WBTC-A
-FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK=2
+FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK=0
 FLIP_WBTC_URL="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
 FLIP_WBTC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
@@ -90,6 +90,15 @@ FLIP_ILK_ZRX_A=ZRX-A
 FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK=0
 FLIP_ZRX_URL="https://api.coingecko.com/api/v3/simple/price?ids=0x&vs_currencies=usd"
 FLIP_ZRX_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-MANA-A Config ######
+FLIP_MANA_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_MANA_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-mana-a.json,pass_file=/opt/keeper/secrets/password-flip-mana-a.txt'
+FLIP_MANA_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_MANA_A=MANA-A
+FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK=0
+FLIP_MANA_URL="https://api.coingecko.com/api/v3/simple/price?ids=decentraland&vs_currencies=usd"
+FLIP_MANA_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
