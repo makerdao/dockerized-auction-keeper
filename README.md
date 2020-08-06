@@ -21,8 +21,8 @@ https://docs.docker.com/compose/install/
 After following the setup procedure below, this keeper works out of the box under the following configuration:
 - Participates in up to 100 active ETH-A or BAT-A or USDC-A or USDC-B or WBTC-A or TUSD-A or KNC-A or ZRX-A or MANA-A or Flip auctions; it does not start new ones
 - Begins scan at a prescribed auction id - we recommend starting at:
-  - `mainnet` - 4500 for `ETH`, 500 for `BAT` and 0 for `WBTC`
-  - `kovan` - 1800
+  - `mainnet` - 0 for all collateral types
+  - `kovan` - 0 for all collateral types
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
