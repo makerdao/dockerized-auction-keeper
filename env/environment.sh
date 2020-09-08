@@ -16,7 +16,7 @@ GASPRICE_MULTIPLIER=1.6
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
 FULL_PATH_TO_KEEPER_DIRECTORY=/opt/keeper/auction-keeper
-FIRST_BLOCK_TO_CHECK=10549263
+FIRST_BLOCK_TO_CHECK=10769102
 DAI_IN_VAT=10000
 
 ###### FLIP-ETH-A Config ######
@@ -99,6 +99,15 @@ FLIP_ILK_MANA_A=MANA-A
 FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK=0
 FLIP_MANA_URL="https://api.coingecko.com/api/v3/simple/price?ids=decentraland&vs_currencies=usd"
 FLIP_MANA_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-USDT-A Config ######
+FLIP_USDT_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_USDT_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-usdt-a.json,pass_file=/opt/keeper/secrets/password-flip-usdt-a.txt'
+FLIP_USDT_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_USDT_A=USDT-A
+FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK=0
+FLIP_USDT_URL="https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd"
+FLIP_USDT_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
