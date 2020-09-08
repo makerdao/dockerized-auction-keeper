@@ -109,6 +109,15 @@ FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK=0
 FLIP_USDT_URL="https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd"
 FLIP_USDT_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-PAXUSD-A Config ######
+FLIP_PAXUSD_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_PAXUSD_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-paxusd-a.json,pass_file=/opt/keeper/secrets/password-flip-paxusd-a.txt'
+FLIP_PAXUSD_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_PAXUSD_A=PAXUSD-A
+FLIP_MINIMUM_PAXUSD_A_AUCTION_ID_TO_CHECK=0
+FLIP_PAXUSD_URL="https://api.coingecko.com/api/v3/simple/price?ids=paxos-standard&vs_currencies=usd"
+FLIP_PAXUSD_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'

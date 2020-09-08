@@ -150,6 +150,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-usdt-a.sh model-usdt.sh
+  flip-paxusd-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-paxusd-a
+    working_dir: /opt/keeper/flip-paxusd-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/paxusd-a/:/opt/keeper/flip-paxusd-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-paxusd-a.sh model-paxusd.sh
   flop:
     build: .
     image: makerdao/auction-keeper
