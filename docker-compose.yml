@@ -165,6 +165,51 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-paxusd-a.sh model-paxusd.sh
+  flip-comp-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-comp-a
+    working_dir: /opt/keeper/flip-comp-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/comp-a/:/opt/keeper/flip-comp-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-comp-a.sh model-comp.sh
+  flip-link-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-link-a
+    working_dir: /opt/keeper/flip-link-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/link-a/:/opt/keeper/flip-link-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-link-a.sh model-link.sh
+  flip-lrc-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-lrc-a
+    working_dir: /opt/keeper/flip-lrc-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/lrc-a/:/opt/keeper/flip-lrc-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-lrc-a.sh model-lrc.sh
   flop:
     build: .
     image: makerdao/auction-keeper
