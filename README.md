@@ -27,12 +27,10 @@ After following the setup procedure below, this keeper works out of the box unde
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
 - Uses a pricing model that tracks the price of ETH | BAT | USDC | WBTC | TUSD | KNC | ZRX | MANA | USDT | PAXUSD | COMP | LINK | LRC via a public API and applies a `DISCOUNT` before participating
-- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log` or `auction-keeper-flip-KNC-A.log` or `auction-keeper-flip-ZRX-A.log` or `auction-keeper-flip-MANA-A.log` or `auction-keeper-flip-USDT-A.log` or `auction-keeper-flip-PAXUSD-A.log` or `auction-keeper-flip-COMP-A.log` or `auction-keeper-flip-LINK-A.log` or `auction-keeper-flip-LRC-A.log`) 
+- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log` or `auction-keeper-flip-KNC-A.log` or `auction-keeper-flip-ZRX-A.log` or `auction-keeper-flip-MANA-A.log` or `auction-keeper-flip-USDT-A.log` or `auction-keeper-flip-PAXUSD-A.log` or `auction-keeper-flip-COMP-A.log` or `auction-keeper-flip-LINK-A.log` or `auction-keeper-flip-LRC-A.log`)
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY` in the env.
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
-    - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
-    - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS` | `FLIP_KNC_A_ACCOUNT_ADDRESS` | `FLIP_ZRX_A_ACCOUNT_ADDRESS` | `FLIP_MANA_A_ACCOUNT_ADDRESS` | `FLIP_USDT_A_ACCOUNT_ADDRESS` | `FLIP_PAXUSD_A_ACCOUNT_ADDRESS` | `FLIP_COMP_A_ACCOUNT_ADDRESS` | `FLIP_LINK_A_ACCOUNT_ADDRESS` | `FLIP_LRC_A_ACCOUNT_ADDRESS`: address to use for bidding
     - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
@@ -76,8 +74,6 @@ After following the setup procedure below, this keeper works out of the box unde
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLOP_ACCOUNT_KEY` in the env.
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
-    - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
-    - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
     - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
@@ -180,33 +176,12 @@ flip-lrc-a keeper
 flop keeper
 `./stop-keeper.sh flop`
 
-### Using a dynamic gas price model for bids
-
-- configure following variables in `env/environment.sh` file:
-```
-# Dynamic Gas Price Model
-# 0 = get the gas price from the node (default)
-# 1 = get the gas price from ethgasstation.info
-#     must set ETHGASSTATION_API_KEY
-# 2 = get the gas price from etherchain.org
-# 3 = get the gas price from poanetwork
-#     set POANETWORK_URL env var to point to a self hosted server e.g. POANETWORK_URL=http://localhost:8000
-GAS_MODE=0
-# increase this if you want to use higher price than the one reported
-# (e.g. if 2.0 then will use 2 * fastest)
-GASPRICE_MULTIPLIER=1.4
-# ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
-# ethgasstation.info for dynamic gas, otherwise we will simply check the node.
-ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
-```  
-Note: this configuration determines keeper gas price strategy as explained in https://github.com/makerdao/auction-keeper#gas-price-strategy 
-
 ### Optional additions
 
 Other auction keepers can be added in `docker-compose.yml` e.g. for a flapper keeper
 
 ### Note on using Windows Subsystem for Linux
-As Docker Desktop is not able to access the filesystem of WSL, you need to copy `dockerized-aution-keeper` somewhere in the `/c/` path and run it from there. e.g. `/c/Users/username/dev/dockerized-auction-keeper` instead of `/home/username/dev/dockerized-auction-keeper`. 
+As Docker Desktop is not able to access the filesystem of WSL, you need to copy `dockerized-aution-keeper` somewhere in the `/c/` path and run it from there. e.g. `/c/Users/username/dev/dockerized-auction-keeper` instead of `/home/username/dev/dockerized-auction-keeper`.
 
 Running `./start-keeper.sh flip-eth-a` from a WSL path will generate this error:
 ```

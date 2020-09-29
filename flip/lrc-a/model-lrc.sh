@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-# dynamic gas library
-source ../env/dynamic_gas.sh
-
 while true; do
 
-  # share LRC_URL, DISCOUNT, and GASPRICE_MULTIPLIER
   source ../env/environment.sh
 
   # dynamic bid price
@@ -13,7 +9,7 @@ while true; do
   lrcPrice=$(echo $body | jq '."loopring".usd')
   bidPrice=$(bc -l <<< "$lrcPrice * (1-$FLIP_LRC_DISCOUNT)")
 
-  echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"$(dynamic_gas)\"}"
+  echo "{\"price\": \"${bidPrice}\"}"
 
   sleep 25
 done

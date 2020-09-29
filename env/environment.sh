@@ -1,20 +1,6 @@
 # host and port
 SERVER_ETH_RPC_HOST=https://localhost:8545
 
-# Dynamic Gas Price Model
-# 0 = get the gas price from the node (default)
-# 1 = get the gas price from ethgasstation.info
-#     must set ETHGASSTATION_API_KEY
-# 2 = get the gas price from etherchain.org
-# 3 = get the gas price from poanetwork
-#     set POANETWORK_URL env var to point to a self hosted server e.g. POANETWORK_URL=http://localhost:8000
-GAS_MODE=0
-# increase this if you want to use higher price than the one reported
-# (e.g. if 2.0 then will use 2 * fast)
-GASPRICE_MULTIPLIER=1.6
-# ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
-# ethgasstation.info for dynamic gas, otherwise we will simply check the node.
-ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
 FULL_PATH_TO_KEEPER_DIRECTORY=/opt/keeper/auction-keeper
 FIRST_BLOCK_TO_CHECK=10769102
 DAI_IN_VAT=10000
