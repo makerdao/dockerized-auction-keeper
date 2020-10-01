@@ -44,10 +44,12 @@ dynamic_gas()
 dynamic_gas_params()
 {
   if [[ $GAS_MODE = 1 ]]; then
-    echo "--ethgasstation-api-key ${ETHGASSTATION_API_KEY}"
+    echo "--gas-initial-multiplier=${GASPRICE_MULTIPLIER} --ethgasstation-api-key=${ETHGASSTATION_API_KEY}"
   elif [[ $GAS_MODE = 2 ]]; then
-    echo "--etherchain-gas-price"
+    echo "--gas-initial-multiplier=${GASPRICE_MULTIPLIER} --etherchain-gas-price"
   elif [[ $GAS_MODE = 3 ]]; then
-    echo "--poanetwork-gas-price --poanetwork-url ${POANETWORK_URL:-https://gasprice.poa.network}"
+    echo "--gas-initial-multiplier=${GASPRICE_MULTIPLIER} --poanetwork-gas-price --poanetwork-url=${POANETWORK_URL:-https://gasprice.poa.network}"
+  else
+    echo "--gas-initial-multiplier=${GASPRICE_MULTIPLIER}"
   fi
 }

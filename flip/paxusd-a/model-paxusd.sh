@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-# dynamic gas library
-source ../env/dynamic_gas.sh
-
 while true; do
 
-  # share PAXUSD_URL, DISCOUNT, and GASPRICE_MULTIPLIER
   source ../env/environment.sh
 
   # dynamic bid price
@@ -13,7 +9,7 @@ while true; do
   paxusdPrice=$(echo $body | jq '."paxos-standard".usd')
   bidPrice=$(bc -l <<< "$paxusdPrice * (1-$FLIP_PAXUSD_DISCOUNT)")
 
-  echo "{\"price\": \"${bidPrice}\", \"gasPrice\": \"$(dynamic_gas)\"}"
+  echo "{\"price\": \"${bidPrice}\"}"
 
   sleep 25
 done

@@ -11,7 +11,7 @@ SERVER_ETH_RPC_HOST=https://localhost:8545
 GAS_MODE=0
 # increase this if you want to use higher price than the one reported
 # (e.g. if 2.0 then will use 2 * fast)
-GASPRICE_MULTIPLIER=1.6
+GASPRICE_MULTIPLIER=1.3
 # ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
@@ -117,6 +117,33 @@ FLIP_ILK_PAXUSD_A=PAXUSD-A
 FLIP_MINIMUM_PAXUSD_A_AUCTION_ID_TO_CHECK=0
 FLIP_PAXUSD_URL="https://api.coingecko.com/api/v3/simple/price?ids=paxos-standard&vs_currencies=usd"
 FLIP_PAXUSD_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-COMP-A Config ######
+FLIP_COMP_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_COMP_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-comp-a.json,pass_file=/opt/keeper/secrets/password-flip-comp-a.txt'
+FLIP_COMP_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_COMP_A=COMP-A
+FLIP_MINIMUM_COMP_A_AUCTION_ID_TO_CHECK=0
+FLIP_COMP_URL="https://api.coingecko.com/api/v3/simple/price?ids=compound-governance-token&vs_currencies=usd"
+FLIP_COMP_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-LINK-A Config ######
+FLIP_LINK_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_LINK_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-link-a.json,pass_file=/opt/keeper/secrets/password-flip-link-a.txt'
+FLIP_LINK_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_LINK_A=LINK-A
+FLIP_MINIMUM_LINK_A_AUCTION_ID_TO_CHECK=0
+FLIP_LINK_URL="https://api.coingecko.com/api/v3/simple/price?ids=link&vs_currencies=usd"
+FLIP_LINK_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-LRC-A Config ######
+FLIP_LRC_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_LRC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-lrc-a.json,pass_file=/opt/keeper/secrets/password-flip-lrc-a.txt'
+FLIP_LRC_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_LRC_A=LRC-A
+FLIP_MINIMUM_LRC_A_AUCTION_ID_TO_CHECK=0
+FLIP_LRC_URL="https://api.coingecko.com/api/v3/simple/price?ids=loopring&vs_currencies=usd"
+FLIP_LRC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'

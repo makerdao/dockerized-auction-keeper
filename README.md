@@ -19,23 +19,23 @@ https://docs.docker.com/compose/install/
 ### Setup flip keepers
 
 After following the setup procedure below, this keeper works out of the box under the following configuration:
-- Participates in up to 100 active ETH-A or BAT-A or USDC-A or USDC-B or WBTC-A or TUSD-A or KNC-A or ZRX-A or MANA-A or USDT-A or PAXUSD-A Flip auctions; it does not start new ones
+- Participates in up to 100 active ETH-A or BAT-A or USDC-A or USDC-B or WBTC-A or TUSD-A or KNC-A or ZRX-A or MANA-A or USDT-A or PAXUSD-A or COMP-A or LINK-A or LRC-A Flip auctions; it does not start new ones
 - Begins scan at a prescribed auction id - we recommend starting at:
   - `mainnet` - 0 for all collateral types
   - `kovan` - 0 for all collateral types
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
-- Uses a pricing model that tracks the price of ETH | BAT | USDC | WBTC | TUSD | KNC | ZRX | MANA | USDT | PAXUSD via a public API and applies a `DISCOUNT` before participating
-- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log` or `auction-keeper-flip-KNC-A.log` or `auction-keeper-flip-ZRX-A.log` or `auction-keeper-flip-MANA-A.log` or `auction-keeper-flip-USDT-A.log` or `auction-keeper-flip-PAXUSD-A.log`)
-- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` in the env.
+- Uses a pricing model that tracks the price of ETH | BAT | USDC | WBTC | TUSD | KNC | ZRX | MANA | USDT | PAXUSD | COMP | LINK | LRC via a public API and applies a `DISCOUNT` before participating
+- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log` or `auction-keeper-flip-KNC-A.log` or `auction-keeper-flip-ZRX-A.log` or `auction-keeper-flip-MANA-A.log` or `auction-keeper-flip-USDT-A.log` or `auction-keeper-flip-PAXUSD-A.log` or `auction-keeper-flip-COMP-A.log` or `auction-keeper-flip-LINK-A.log` or `auction-keeper-flip-LRC-A.log`) 
+- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY` in the env.
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
-    - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS` | `FLIP_KNC_A_ACCOUNT_ADDRESS` | `FLIP_ZRX_A_ACCOUNT_ADDRESS` | `FLIP_MANA_A_ACCOUNT_ADDRESS` | `FLIP_USDT_A_ACCOUNT_ADDRESS` | `FLIP_PAXUSD_A_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS` | `FLIP_KNC_A_ACCOUNT_ADDRESS` | `FLIP_ZRX_A_ACCOUNT_ADDRESS` | `FLIP_MANA_A_ACCOUNT_ADDRESS` | `FLIP_USDT_A_ACCOUNT_ADDRESS` | `FLIP_PAXUSD_A_ACCOUNT_ADDRESS` | `FLIP_COMP_A_ACCOUNT_ADDRESS` | `FLIP_LINK_A_ACCOUNT_ADDRESS` | `FLIP_LRC_A_ACCOUNT_ADDRESS`: address to use for bidding
+    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json,pass_file=/opt/keeper/secrets/password-flip-eth-a.txt'`
@@ -59,6 +59,13 @@ After following the setup procedure below, this keeper works out of the box unde
     `FLIP_USDT_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-usdt-a.json,pass_file=/opt/keeper/secrets/password-flip-usdt-a.txt'`
     or
     `FLIP_PAXUSD_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-paxusd-a.json,pass_file=/opt/keeper/secrets/password-flip-paxusd-a.txt'`
+    or
+    `FLIP_COMP_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-comp-a.json,pass_file=/opt/keeper/secrets/password-flip-comp-a.txt'`
+    or
+    `FLIP_LINK_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-link-a.json,pass_file=/opt/keeper/secrets/password-flip-link-a.txt'`
+    or
+    `FLIP_LRC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-lrc-a.json,pass_file=/opt/keeper/secrets/password-flip-lrc-a.txt'`
+    NOTE: for better security you should avoid distributing password file to the machine and instead specify only keystore in key variable, e.g. `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json'`. You wil be asked to input password on keeper startup.
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
     - `FLIP_ETH_A_DAI_IN_VAT` | `FLIP_BAT_A_DAI_IN_VAT` | `FLIP_USDC_A_DAI_IN_VAT` | `FLIP_USDC_B_DAI_IN_VAT` | `FLIP_WBTC_A_DAI_IN_VAT` | `FLIP_TUSD_A_DAI_IN_VAT` | `FLIP_KNC_A_DAI_IN_VAT` | `FLIP_ZRX_A_DAI_IN_VAT` | `FLIP_MANA_A_DAI_IN_VAT` | `FLIP_USDT_A_DAI_IN_VAT` | `FLIP_PAXUSD_A_DAI_IN_VAT`: Amount of Dai in Vat per collateral type
     - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_KNC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
@@ -115,6 +122,15 @@ flip-usdt-a keeper
 flip-paxusd-a keeper
 `./start-keeper.sh flip-paxusd-a | tee -a -i auction-keeper-flip-PAXUSD-A.log`
 
+flip-comp-a keeper
+`./start-keeper.sh flip-comp-a | tee -a -i auction-keeper-flip-COMP-A.log`
+
+flip-link-a keeper
+`./start-keeper.sh flip-link-a | tee -a -i auction-keeper-flip-LINK-A.log`
+
+flip-lrc-a keeper
+`./start-keeper.sh flip-lrc-a | tee -a -i auction-keeper-flip-LRC-A.log`
+
 flop keeper
 `./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
 
@@ -151,6 +167,15 @@ flip-usdt-a keeper
 
 flip-paxusd-a keeper
 `./stop-keeper.sh flip-paxusd-a`
+
+flip-comp-a keeper
+`./stop-keeper.sh flip-comp-a`
+
+flip-link-a keeper
+`./stop-keeper.sh flip-link-a`
+
+flip-lrc-a keeper
+`./stop-keeper.sh flip-lrc-a`
 
 flop keeper
 `./stop-keeper.sh flop`
