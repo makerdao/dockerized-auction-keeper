@@ -11,7 +11,7 @@ SERVER_ETH_RPC_HOST=https://localhost:8545
 GAS_MODE=0
 # increase this if you want to use higher price than the one reported
 # (e.g. if 2.0 then will use 2 * fast)
-GASPRICE_MULTIPLIER=1.6
+GASPRICE_MULTIPLIER=1.3
 # ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
