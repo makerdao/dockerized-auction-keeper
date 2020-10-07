@@ -71,6 +71,22 @@ After following the setup procedure below, this keeper works out of the box unde
     - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_KNC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ETH_A_DISCOUNT` | `FLIP_BAT_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_WBTC_A_DISCOUNT` | `FLIP_TUSD_A_DISCOUNT` | `FLIP_KNC_A_DISCOUNT` | `FLIP_ZRX_A_DISCOUNT` | `FLIP_MANA_A_DISCOUNT` | `FLIP_USDT_A_DISCOUNT` | `FLIP_PAXUSD_A_DISCOUNT`: Discount from ETH's or BAT's or USDC's FMV or WBTC's FMV, which will be used as the bid price
 
+### Setup flap keeper
+
+- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLAP_ACCOUNT_KEY` in the env.
+- Configure following variables in `env/environment.sh` file:
+    - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
+    - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
+    - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
+    - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
+    - `FLAP_ACCOUNT_ADDRESS`: address to use for bidding
+    - `FLAP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
+    Ex: if you put `keystore-flap.json` and `password-flap.txt` under `secrets` directory then var should be configured as
+    `FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'`
+    - `FLAP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
+    - `FLAP_MKR_DISCOUNT`: Discount from MKR's FMV, which will be used as the bid price
+
 ### Setup flop keeper
 
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLOP_ACCOUNT_KEY` in the env.
@@ -131,6 +147,9 @@ flip-link-a keeper
 flip-lrc-a keeper
 `./start-keeper.sh flip-lrc-a | tee -a -i auction-keeper-flip-LRC-A.log`
 
+flap keeper
+`./start-keeper.sh flap | tee -a -i auction-keeper-flap.log`
+
 flop keeper
 `./start-keeper.sh flop | tee -a -i auction-keeper-flop.log`
 
@@ -177,6 +196,9 @@ flip-link-a keeper
 flip-lrc-a keeper
 `./stop-keeper.sh flip-lrc-a`
 
+flap keeper
+`./stop-keeper.sh flap`
+
 flop keeper
 `./stop-keeper.sh flop`
 
@@ -203,7 +225,7 @@ Note: this configuration determines keeper gas price strategy as explained in ht
 
 ### Optional additions
 
-Other auction keepers can be added in `docker-compose.yml` e.g. for a flapper keeper
+Other auction keepers can be added in `docker-compose.yml`.
 
 ### Note on using Windows Subsystem for Linux
 As Docker Desktop is not able to access the filesystem of WSL, you need to copy `dockerized-aution-keeper` somewhere in the `/c/` path and run it from there. e.g. `/c/Users/username/dev/dockerized-auction-keeper` instead of `/home/username/dev/dockerized-auction-keeper`. 

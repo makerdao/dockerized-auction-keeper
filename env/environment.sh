@@ -145,6 +145,13 @@ FLIP_MINIMUM_LRC_A_AUCTION_ID_TO_CHECK=0
 FLIP_LRC_URL="https://api.coingecko.com/api/v3/simple/price?ids=loopring&vs_currencies=usd"
 FLIP_LRC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLAP Config ######
+FLAP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'
+FLAP_DAI_IN_VAT=${DAI_IN_VAT}
+FLAP_MKR_URL="https://api.coingecko.com/api/v3/simple/price?ids=maker&vs_currencies=usd"
+FLAP_MKR_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLOP Config ######
 FLOP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'
