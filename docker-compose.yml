@@ -210,6 +210,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-lrc-a.sh model-lrc.sh
+  flap:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flap
+    working_dir: /opt/keeper/flap/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flap/:/opt/keeper/flap/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flap.sh model-mkr.sh
   flop:
     build: .
     image: makerdao/auction-keeper

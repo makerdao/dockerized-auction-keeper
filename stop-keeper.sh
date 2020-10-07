@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-    echo 'Usage: ./stop-keeper flip-eth-a|flop'
+    echo 'Usage: ./stop-keeper flip-eth-a|flap|flop'
     exit 0
 fi
 
