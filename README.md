@@ -78,7 +78,6 @@ After following the setup procedure below, this keeper works out of the box unde
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
-    - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLAP_ACCOUNT_ADDRESS`: address to use for bidding
     - `FLAP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
     Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory

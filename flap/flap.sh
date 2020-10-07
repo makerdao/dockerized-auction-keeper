@@ -17,6 +17,5 @@ ${FULL_PATH_TO_KEEPER_DIRECTORY}/bin/auction-keeper \
     --max-auctions 100 \
     $(dynamic_gas_params) \
     --vat-dai-target ${FLAP_DAI_IN_VAT} \
-    --from-block ${FIRST_BLOCK_TO_CHECK} \
     --bid-only \
     --model ${dir}/${MODEL}
