@@ -16,7 +16,7 @@ GASPRICE_MULTIPLIER=1.3
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
 FULL_PATH_TO_KEEPER_DIRECTORY=/opt/keeper/auction-keeper
-FIRST_BLOCK_TO_CHECK=10769102
+FIRST_BLOCK_TO_CHECK=11010359
 DAI_IN_VAT=10000
 
 ###### FLIP-ETH-A Config ######
