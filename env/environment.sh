@@ -145,6 +145,14 @@ FLIP_MINIMUM_LRC_A_AUCTION_ID_TO_CHECK=0
 FLIP_LRC_URL="https://api.coingecko.com/api/v3/simple/price?ids=loopring&vs_currencies=usd"
 FLIP_LRC_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-ETH-B Config ######
+FLIP_ETH_B_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_ETH_B_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-b.json,pass_file=/opt/keeper/secrets/password-flip-eth-b.txt'
+FLIP_ETH_B_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_ETH_B=ETH-B
+FLIP_MINIMUM_ETH_B_AUCTION_ID_TO_CHECK=0
+FLIP_ETH_B_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLAP Config ######
 FLAP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'
