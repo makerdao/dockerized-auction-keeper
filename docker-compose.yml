@@ -210,6 +210,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-lrc-a.sh model-lrc.sh
+  flip-eth-b:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-eth-b
+    working_dir: /opt/keeper/flip-eth-b/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/eth-b/:/opt/keeper/flip-eth-b/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-eth-b.sh model-eth.sh
   flap:
     build: .
     image: makerdao/auction-keeper
