@@ -2,7 +2,7 @@
 
 `dockerized-auction-keeper` contains a preconfigured [auction-keeper](https://github.com/makerdao/auction-keeper) that follows a simple FMV discount pricing model. With docker as the only prerequisite, this instance is well-suited for first-time auction keeper operators.
 
-Note: Docker image will be created based on current master branch when you first run the keeper. If you want to rebuild image
+**Note**: Docker image will be created based on current master branch when you first run the keeper. If you want to rebuild image
 with latest master make sure keepers are stopped then run `./cleanup.sh` script
 
 ### Install Prerequisite
@@ -35,8 +35,9 @@ After following the setup procedure below, this keeper works out of the box unde
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_ETH_B_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS` | `FLIP_KNC_A_ACCOUNT_ADDRESS` | `FLIP_ZRX_A_ACCOUNT_ADDRESS` | `FLIP_MANA_A_ACCOUNT_ADDRESS` | `FLIP_USDT_A_ACCOUNT_ADDRESS` | `FLIP_PAXUSD_A_ACCOUNT_ADDRESS` | `FLIP_COMP_A_ACCOUNT_ADDRESS` | `FLIP_LINK_A_ACCOUNT_ADDRESS` | `FLIP_LRC_A_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_ETH_B_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
+    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_ETH_B_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
+    
+    **Note**: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json,pass_file=/opt/keeper/secrets/password-flip-eth-a.txt'`
     or
@@ -66,8 +67,9 @@ After following the setup procedure below, this keeper works out of the box unde
     or
     `FLIP_LRC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-lrc-a.json,pass_file=/opt/keeper/secrets/password-flip-lrc-a.txt'`
     or
-    `FLIP_ETH_B_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-b.json,pass_file=/opt/keeper/secrets/password-flip-eth-b.txt'`
-    NOTE: for better security you should avoid distributing password file to the machine and instead specify only keystore in key variable, e.g. `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json'` and use `./start-interactive-keeper.sh`. You wil be asked to input password on keeper startup.
+    `FLIP_ETH_B_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-b.json,pass_file=/opt/keeper/secrets/password-flip-eth-b.txt'`  
+    
+    **Note**: for better security you should avoid distributing password file to the machine and instead specify only keystore in key variable, e.g. `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json'` and use `./start-interactive-keeper.sh`. You wil be asked to input password on keeper startup.
     - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
     - `FLIP_ETH_A_DAI_IN_VAT` | `FLIP_ETH_B_DAI_IN_VAT` | `FLIP_BAT_A_DAI_IN_VAT` | `FLIP_USDC_A_DAI_IN_VAT` | `FLIP_USDC_B_DAI_IN_VAT` | `FLIP_WBTC_A_DAI_IN_VAT` | `FLIP_TUSD_A_DAI_IN_VAT` | `FLIP_KNC_A_DAI_IN_VAT` | `FLIP_ZRX_A_DAI_IN_VAT` | `FLIP_MANA_A_DAI_IN_VAT` | `FLIP_USDT_A_DAI_IN_VAT` | `FLIP_PAXUSD_A_DAI_IN_VAT`: Amount of Dai in Vat per collateral type
     - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ETH_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_KNC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
@@ -81,8 +83,9 @@ After following the setup procedure below, this keeper works out of the box unde
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FLAP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLAP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
+    - `FLAP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
+    
+    **Note**: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flap.json` and `password-flap.txt` under `secrets` directory then var should be configured as
     `FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'`
     - `FLAP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
@@ -97,8 +100,9 @@ After following the setup procedure below, this keeper works out of the box unde
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
-    Note: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
+    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
+    
+    **Note**: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flop.json` and `password-flop.txt` under `secrets` directory then var should be configured as
     `FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'`
     - `FLOP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
@@ -228,7 +232,7 @@ GASPRICE_MULTIPLIER=1.4
 # ethgasstation.info for dynamic gas, otherwise we will simply check the node.
 ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
 ```  
-Note: this configuration determines keeper gas price strategy as explained in https://github.com/makerdao/auction-keeper#gas-price-strategy 
+**Note**: this configuration determines keeper gas price strategy as explained in https://github.com/makerdao/auction-keeper#gas-price-strategy 
 
 ### Optional additions
 
