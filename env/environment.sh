@@ -133,7 +133,7 @@ FLIP_LINK_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-link-a.json,
 FLIP_LINK_A_DAI_IN_VAT=${DAI_IN_VAT}
 FLIP_ILK_LINK_A=LINK-A
 FLIP_MINIMUM_LINK_A_AUCTION_ID_TO_CHECK=0
-FLIP_LINK_URL="https://api.coingecko.com/api/v3/simple/price?ids=link&vs_currencies=usd"
+FLIP_LINK_URL="https://api.coingecko.com/api/v3/simple/price?ids=chainlink&vs_currencies=usd"
 FLIP_LINK_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
 ###### FLIP-LRC-A Config ######
