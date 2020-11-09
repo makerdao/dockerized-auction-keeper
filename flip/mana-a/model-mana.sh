@@ -7,7 +7,7 @@ while true; do
   # dynamic bid price
   body=$(curl -s -X GET "$FLIP_MANA_URL" -H "accept: application/json")
   manaPrice=$(echo $body | jq '."decentraland".usd')
-  bidPrice=$(bc -l <<< "$manaPrice * (1-$FLIP_MANA_DISCOUNT)")
+  bidPrice=$(bc -l <<< "$manaPrice * (1-$FLIP_MANA_A_DISCOUNT)")
 
   echo "{\"price\": \"${bidPrice}\"}"
 

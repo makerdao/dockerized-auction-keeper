@@ -15,6 +15,21 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-eth-a.sh model-eth.sh
+  flip-eth-b:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-eth-b
+    working_dir: /opt/keeper/flip-eth-b/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/eth-b/:/opt/keeper/flip-eth-b/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-eth-b.sh model-eth.sh
   flip-bat-a:
     build: .
     image: makerdao/auction-keeper
@@ -210,21 +225,36 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-lrc-a.sh model-lrc.sh
-  flip-eth-b:
+  flip-bal-a:
     build: .
     image: makerdao/auction-keeper
-    container_name: flip-eth-b
-    working_dir: /opt/keeper/flip-eth-b/
+    container_name: flip-bal-a
+    working_dir: /opt/keeper/flip-bal-a/
     volumes:
       - $PWD/secrets:/opt/keeper/secrets
       - $PWD/env/:/opt/keeper/env/
-      - $PWD/flip/eth-b/:/opt/keeper/flip-eth-b/
+      - $PWD/flip/bal-a/:/opt/keeper/flip-bal-a/
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "10"
-    command: ./flip-eth-b.sh model-eth.sh
+    command: ./flip-bal-a.sh model-bal.sh
+  flip-yfi-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-yfi-a
+    working_dir: /opt/keeper/flip-yfi-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/yfi-a/:/opt/keeper/flip-yfi-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-yfi-a.sh model-yfi.sh
   flap:
     build: .
     image: makerdao/auction-keeper

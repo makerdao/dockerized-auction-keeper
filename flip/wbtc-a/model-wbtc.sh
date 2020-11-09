@@ -7,7 +7,7 @@ while true; do
   # dynamic bid price
   body=$(curl -s -X GET "${FLIP_WBTC_URL}" -H "accept: application/json")
   bitcoinPrice=$(echo ${body} | jq '.bitcoin.usd')
-  bidPrice=$(bc -l <<< "${bitcoinPrice} * (1-${FLIP_WBTC_DISCOUNT})")
+  bidPrice=$(bc -l <<< "${bitcoinPrice} * (1-${FLIP_WBTC_A_DISCOUNT})")
 
   echo "{\"price\": \"${bidPrice}\"}"
 

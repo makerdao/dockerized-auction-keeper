@@ -26,20 +26,161 @@ After following the setup procedure below, this keeper works out of the box unde
 - Looks for Vaults (i.e. `urns`) at a supplied block height - we recommend starting at the block that `Vat` was deployed:
   - `mainnet` - 8928152
   - `kovan 1.0.2` - 14764534
-- Uses a pricing model that tracks the price of ETH | BAT | USDC | WBTC | TUSD | KNC | ZRX | MANA | USDT | PAXUSD | COMP | LINK | LRC via a public API and applies a `DISCOUNT` before participating
-- All logs from the keeper are saved and appended to a single file (`auction-keeper-flip-ETH-A.log` or or `auction-keeper-flip-ETH-B.log` or `auction-keeper-flip-BAT-A.log` or `auction-keeper-flip-USDC-A.log` or `auction-keeper-flip-USDC-B.log` or `auction-keeper-flip-WBTC-A.log`  or `auction-keeper-flip-TUSD-A.log` or `auction-keeper-flip-KNC-A.log` or `auction-keeper-flip-ZRX-A.log` or `auction-keeper-flip-MANA-A.log` or `auction-keeper-flip-USDT-A.log` or `auction-keeper-flip-PAXUSD-A.log` or `auction-keeper-flip-COMP-A.log` or `auction-keeper-flip-LINK-A.log` or `auction-keeper-flip-LRC-A.log`) 
-- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY` in the env.
+- Uses a pricing model that tracks the price of the following assets via a public API and applies a `DISCOUNT` before participating:
+    - ETH
+    - BAT
+    - USDC
+    - WBTC
+    - TUSD
+    - KNC
+    - ZRX
+    - MANA
+    - USDT
+    - PAXUSD
+    - COMP
+    - LINK
+    - LRC
+    - BAL
+    - YFI
+- All logs from the keeper are saved and appended to a single file:
+    - `auction-keeper-flip-ETH-A.log`
+    - `auction-keeper-flip-ETH-B.log`
+    - `auction-keeper-flip-BAT-A.log`
+    - `auction-keeper-flip-USDC-A.log`
+    - `auction-keeper-flip-USDC-B.log`
+    - `auction-keeper-flip-WBTC-A.log`
+    - `auction-keeper-flip-TUSD-A.log`
+    - `auction-keeper-flip-KNC-A.log`
+    - `auction-keeper-flip-ZRX-A.log`
+    - `auction-keeper-flip-MANA-A.log`
+    - `auction-keeper-flip-USDT-A.log`
+    - `auction-keeper-flip-PAXUSD-A.log`
+    - `auction-keeper-flip-COMP-A.log`
+    - `auction-keeper-flip-LINK-A.log`
+    - `auction-keeper-flip-LRC-A.log`
+    - `auction-keeper-flip-BAL-A.log`
+    - `auction-keeper-flip-YFI-A.log`
+- Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the environment:
+    - `FLIP_ETH_A_ACCOUNT_KEY`
+    - `FLIP_ETH_B_ACCOUNT_KEY`
+    - `FLIP_BAT_A_ACCOUNT_KEY`
+    - `FLIP_USDC_A_ACCOUNT_KEY`
+    - `FLIP_USDC_B_ACCOUNT_KEY`
+    - `FLIP_WBTC_A_ACCOUNT_KEY`
+    - `FLIP_TUSD_A_ACCOUNT_KEY`
+    - `FLIP_KNC_A_ACCOUNT_KEY`
+    - `FLIP_ZRX_A_ACCOUNT_KEY`
+    - `FLIP_MANA_A_ACCOUNT_KEY`
+    - `FLIP_USDT_A_ACCOUNT_KEY`
+    - `FLIP_PAXUSD_A_ACCOUNT_KEY`
+    - `FLIP_COMP_A_ACCOUNT_KEY`
+    - `FLIP_LINK_A_ACCOUNT_KEY`
+    - `FLIP_LRC_A_ACCOUNT_KEY`
+    - `FLIP_BAL_A_ACCOUNT_KEY`
+    - `FLIP_YFI_A_ACCOUNT_KEY`
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
+    - `ETHERSCAN_API_KEY`: etherscan API KEY, can be applied for at https://etherscan.io/myapikey
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
-    - `FLIP_ETH_A_ACCOUNT_ADDRESS` | `FLIP_ETH_B_ACCOUNT_ADDRESS` | `FLIP_BAT_A_ACCOUNT_ADDRESS` | `FLIP_USDC_A_ACCOUNT_ADDRESS` | `FLIP_USDC_B_ACCOUNT_ADDRESS` | `FLIP_WBTC_A_ACCOUNT_ADDRESS` | `FLIP_TUSD_A_ACCOUNT_ADDRESS` | `FLIP_KNC_A_ACCOUNT_ADDRESS` | `FLIP_ZRX_A_ACCOUNT_ADDRESS` | `FLIP_MANA_A_ACCOUNT_ADDRESS` | `FLIP_USDT_A_ACCOUNT_ADDRESS` | `FLIP_PAXUSD_A_ACCOUNT_ADDRESS` | `FLIP_COMP_A_ACCOUNT_ADDRESS` | `FLIP_LINK_A_ACCOUNT_ADDRESS` | `FLIP_LRC_A_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLIP_ETH_A_ACCOUNT_KEY` | `FLIP_ETH_B_ACCOUNT_KEY` | `FLIP_BAT_A_ACCOUNT_KEY` | `FLIP_USDC_A_ACCOUNT_KEY` | `FLIP_USDC_B_ACCOUNT_KEY` | `FLIP_WBTC_A_ACCOUNT_KEY` | `FLIP_TUSD_A_ACCOUNT_KEY` | `FLIP_KNC_A_ACCOUNT_KEY` | `FLIP_ZRX_A_ACCOUNT_KEY` | `FLIP_MANA_A_ACCOUNT_KEY` | `FLIP_USDT_A_ACCOUNT_KEY` | `FLIP_PAXUSD_A_ACCOUNT_KEY` | `FLIP_COMP_A_ACCOUNT_KEY` | `FLIP_LINK_A_ACCOUNT_KEY` | `FLIP_LRC_A_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    
-    **Note**: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
-    Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as
+        - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
+    - Amount of Dai in Vat per collateral type:
+        - `FLIP_ETH_A_DAI_IN_VAT`
+        - `FLIP_ETH_B_DAI_IN_VAT`
+        - `FLIP_BAT_A_DAI_IN_VAT`
+        - `FLIP_USDC_A_DAI_IN_VAT`
+        - `FLIP_USDC_B_DAI_IN_VAT`
+        - `FLIP_WBTC_A_DAI_IN_VAT`
+        - `FLIP_TUSD_A_DAI_IN_VAT`
+        - `FLIP_KNC_A_DAI_IN_VAT`
+        - `FLIP_ZRX_A_DAI_IN_VAT`
+        - `FLIP_MANA_A_DAI_IN_VAT`
+        - `FLIP_USDT_A_DAI_IN_VAT`
+        - `FLIP_PAXUSD_A_DAI_IN_VAT`
+        - `FLIP_COMP_A_DAI_IN_VAT`
+        - `FLIP_LINK_A_DAI_IN_VAT`
+        - `FLIP_LRC_A_DAI_IN_VAT`
+        - `FLIP_BAL_A_DAI_IN_VAT`
+        - `FLIP_YFI_A_DAI_IN_VAT`
+    - Minimum auction id to check as recommendation under introduction section:
+        - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_ETH_B_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_KNC_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_PAXUSD_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_COMP_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_LINK_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_LRC_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_BAL_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_YFI_A_AUCTION_ID_TO_CHECK`
+    - Discount from asset's fair market value (FMV), which will be used as the bid price:
+        - `FLIP_ETH_A_DISCOUNT`
+        - `FLIP_ETH_B_DISCOUNT`
+        - `FLIP_BAT_A_DISCOUNT`
+        - `FLIP_USDC_A_DISCOUNT`
+        - `FLIP_USDC_B_DISCOUNT`
+        - `FLIP_WBTC_A_DISCOUNT`
+        - `FLIP_TUSD_A_DISCOUNT`
+        - `FLIP_KNC_A_DISCOUNT`
+        - `FLIP_ZRX_A_DISCOUNT`
+        - `FLIP_MANA_A_DISCOUNT`
+        - `FLIP_USDT_A_DISCOUNT`
+        - `FLIP_PAXUSD_A_DISCOUNT`
+        - `FLIP_COMP_A_DISCOUNT`
+        - `FLIP_LINK_A_DISCOUNT`
+        - `FLIP_LRC_A_DISCOUNT`
+        - `FLIP_BAL_A_DISCOUNT`
+        - `FLIP_YFI_A_DISCOUNT`
+    - Account address to use for bidding:
+        - `FLIP_ETH_A_ACCOUNT_ADDRESS`
+        - `FLIP_ETH_B_ACCOUNT_ADDRESS`
+        - `FLIP_BAT_A_ACCOUNT_ADDRESS`
+        - `FLIP_USDC_A_ACCOUNT_ADDRESS`
+        - `FLIP_USDC_B_ACCOUNT_ADDRESS`
+        - `FLIP_WBTC_A_ACCOUNT_ADDRESS`
+        - `FLIP_TUSD_A_ACCOUNT_ADDRESS`
+        - `FLIP_KNC_A_ACCOUNT_ADDRESS`
+        - `FLIP_ZRX_A_ACCOUNT_ADDRESS`
+        - `FLIP_MANA_A_ACCOUNT_ADDRESS`
+        - `FLIP_USDT_A_ACCOUNT_ADDRESS`
+        - `FLIP_PAXUSD_A_ACCOUNT_ADDRESS`
+        - `FLIP_COMP_A_ACCOUNT_ADDRESS`
+        - `FLIP_LINK_A_ACCOUNT_ADDRESS`
+        - `FLIP_LRC_A_ACCOUNT_ADDRESS`
+        - `FLIP_BAL_A_ACCOUNT_ADDRESS`
+        - `FLIP_YFI_A_ACCOUNT_ADDRESS`
+    - Account key format of: `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+        - `FLIP_ETH_A_ACCOUNT_KEY`
+        - `FLIP_ETH_B_ACCOUNT_KEY`
+        - `FLIP_BAT_A_ACCOUNT_KEY`
+        - `FLIP_USDC_A_ACCOUNT_KEY`
+        - `FLIP_USDC_B_ACCOUNT_KEY`
+        - `FLIP_WBTC_A_ACCOUNT_KEY`
+        - `FLIP_TUSD_A_ACCOUNT_KEY`
+        - `FLIP_KNC_A_ACCOUNT_KEY`
+        - `FLIP_ZRX_A_ACCOUNT_KEY`
+        - `FLIP_MANA_A_ACCOUNT_KEY`
+        - `FLIP_USDT_A_ACCOUNT_KEY`
+        - `FLIP_PAXUSD_A_ACCOUNT_KEY`
+        - `FLIP_COMP_A_ACCOUNT_KEY`
+        - `FLIP_LINK_A_ACCOUNT_KEY`
+        - `FLIP_LRC_A_ACCOUNT_KEY`
+        - `FLIP_BAL_A_ACCOUNT_KEY`
+        - `FLIP_YFI_A_ACCOUNT_KEY`
+
+    **Note**: Path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory.
+    Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as:
     `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json,pass_file=/opt/keeper/secrets/password-flip-eth-a.txt'`
+    or
+    `FLIP_ETH_B_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-b.json,pass_file=/opt/keeper/secrets/password-flip-eth-b.txt'`
     or
     `FLIP_BAT_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-bat-a.json,pass_file=/opt/keeper/secrets/password-flip-bat-a.txt'`
     or
@@ -67,13 +208,12 @@ After following the setup procedure below, this keeper works out of the box unde
     or
     `FLIP_LRC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-lrc-a.json,pass_file=/opt/keeper/secrets/password-flip-lrc-a.txt'`
     or
-    `FLIP_ETH_B_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-b.json,pass_file=/opt/keeper/secrets/password-flip-eth-b.txt'`  
-    
+    `FLIP_BAL_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-bal-a.json,pass_file=/opt/keeper/secrets/password-flip-bal-a.txt'`
+    or
+    `FLIP_YFI_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-yfi-a.json,pass_file=/opt/keeper/secrets/password-flip-yfi-a.txt'`
+
     **Note**: for better security you should avoid distributing password file to the machine and instead specify only keystore in key variable, e.g. `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json'` and use `./start-interactive-keeper.sh`. You wil be asked to input password on keeper startup.
-    - `FLIP_DAI_IN_VAT`: Amount of Dai in Vat (Internal Dai Balance); important that this is higher than your largest estimated bid amount
-    - `FLIP_ETH_A_DAI_IN_VAT` | `FLIP_ETH_B_DAI_IN_VAT` | `FLIP_BAT_A_DAI_IN_VAT` | `FLIP_USDC_A_DAI_IN_VAT` | `FLIP_USDC_B_DAI_IN_VAT` | `FLIP_WBTC_A_DAI_IN_VAT` | `FLIP_TUSD_A_DAI_IN_VAT` | `FLIP_KNC_A_DAI_IN_VAT` | `FLIP_ZRX_A_DAI_IN_VAT` | `FLIP_MANA_A_DAI_IN_VAT` | `FLIP_USDT_A_DAI_IN_VAT` | `FLIP_PAXUSD_A_DAI_IN_VAT`: Amount of Dai in Vat per collateral type
-    - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ETH_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_BAT_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDC_B_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_WBTC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_TUSD_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_KNC_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_ZRX_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_MANA_A_AUCTION_ID_TO_CHECK` | `FLIP_MINIMUM_USDT_A_AUCTION_ID_TO_CHECK`: Recommendation under introduction section
-    - `FLIP_ETH_DISCOUNT` | `FLIP_ETH_B_DISCOUNT` | `FLIP_BAT_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_USDC_A_DISCOUNT` | `FLIP_WBTC_A_DISCOUNT` | `FLIP_TUSD_A_DISCOUNT` | `FLIP_KNC_A_DISCOUNT` | `FLIP_ZRX_A_DISCOUNT` | `FLIP_MANA_A_DISCOUNT` | `FLIP_USDT_A_DISCOUNT` | `FLIP_PAXUSD_A_DISCOUNT`: Discount from ETH's or BAT's or USDC's FMV or WBTC's FMV, which will be used as the bid price
+
 
 ### Setup flap keeper
 
@@ -81,10 +221,11 @@ After following the setup procedure below, this keeper works out of the box unde
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
+    - `ETHERSCAN_API_KEY`: etherscan API KEY, can be applied for at https://etherscan.io/myapikey
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FLAP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLAP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    
+    - `FLAP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+
     **Note**: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flap.json` and `password-flap.txt` under `secrets` directory then var should be configured as
     `FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'`
@@ -97,11 +238,12 @@ After following the setup procedure below, this keeper works out of the box unde
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
+    - `ETHERSCAN_API_KEY`: etherscan API KEY, can be applied for at https://etherscan.io/myapikey
     - `GASPRICE_MULTIPLIER`: dynamic gas multiplier (e.g. if 2.0 then will use 2 * base)
     - `FIRST_BLOCK_TO_CHECK`: Recommendation under introduction section
     - `FLOP_ACCOUNT_ADDRESS`: address to use for bidding
-    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`  
-    
+    - `FLOP_ACCOUNT_KEY`: account key format of `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
+
     **Note**: path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory
     Ex: if you put `keystore-flop.json` and `password-flop.txt` under `secrets` directory then var should be configured as
     `FLOP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flop.json,pass_file=/opt/keeper/secrets/password-flop.txt'`
@@ -155,6 +297,12 @@ flip-link-a keeper
 flip-lrc-a keeper
 `./start-keeper.sh flip-lrc-a | tee -a -i auction-keeper-flip-LRC-A.log`
 
+flip-bal-a keeper
+`./start-keeper.sh flip-bal-a | tee -a -i auction-keeper-flip-BAL-A.log`
+
+flip-yfi-a keeper
+`./start-keeper.sh flip-yfi-a | tee -a -i auction-keeper-flip-YFI-A.log`
+
 flap keeper
 `./start-keeper.sh flap | tee -a -i auction-keeper-flap.log`
 
@@ -176,6 +324,9 @@ flip-bat-a keeper
 
 flip-usdc-a keeper
 `./stop-keeper.sh flip-usdc-a`
+
+flip-usdc-a keeper
+`./stop-keeper.sh flip-usdc-b`
 
 flip-wbtc-a keeper
 `./stop-keeper.sh flip-wbtc-a`
@@ -207,6 +358,12 @@ flip-link-a keeper
 flip-lrc-a keeper
 `./stop-keeper.sh flip-lrc-a`
 
+flip-bal-a keeper
+`./stop-keeper.sh flip-bal-a`
+
+flip-yfi-a keeper
+`./stop-keeper.sh flip-yfi-a`
+
 flap keeper
 `./stop-keeper.sh flap`
 
@@ -217,29 +374,26 @@ flop keeper
 
 - configure following variables in `env/environment.sh` file:
 ```
-# Dynamic Gas Price Model
-# 0 = get the gas price from the node (default)
-# 1 = get the gas price from ethgasstation.info
-#     must set ETHGASSTATION_API_KEY
-# 2 = get the gas price from etherchain.org
-# 3 = get the gas price from poanetwork
-#     set POANETWORK_URL env var to point to a self hosted server e.g. POANETWORK_URL=http://localhost:8000
-GAS_MODE=0
-# increase this if you want to use higher price than the one reported
-# (e.g. if 2.0 then will use 2 * fastest)
-GASPRICE_MULTIPLIER=1.4
-# ETHGASSTATION_API_KEY is optional.  If you fill it in the model will use
-# ethgasstation.info for dynamic gas, otherwise we will simply check the node.
-ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
-```  
-**Note**: this configuration determines keeper gas price strategy as explained in https://github.com/makerdao/auction-keeper#gas-price-strategy 
+# Increase this if you want to use higher price than the one reported
+# (e.g. if 2.0 then will use 2 * fast)
+GASPRICE_MULTIPLIER=1.3
+
+# ETHGASSTATION_API_KEY is optional.  If you fill it in the auction-keeper
+# will use ethgasstation.info for dynamic gas.  Uncomment the line below
+# and supply your API key if you wish to use dynamic gas.
+#
+# ETHGASSTATION_API_KEY=MY_ETH_GASSTATION_KEY
+
+# ETHERSCAN_API_KEY is optional.  If you fill it in the auction-keeper         # will use etherscan API for dynamic gas.  Uncomment the line below            # and supply your API key if you wish to use dynamic gas.                      #                                                                              # ETHERSCAN_API_KEY=MY_ETHERSCAN_API_KEY
+```
+**Note**: this configuration determines keeper gas price strategy as explained in https://github.com/makerdao/auction-keeper#gas-price-strategy
 
 ### Optional additions
 
 Other auction keepers can be added in `docker-compose.yml`.
 
 ### Note on using Windows Subsystem for Linux
-As Docker Desktop is not able to access the filesystem of WSL, you need to copy `dockerized-aution-keeper` somewhere in the `/c/` path and run it from there. e.g. `/c/Users/username/dev/dockerized-auction-keeper` instead of `/home/username/dev/dockerized-auction-keeper`. 
+As Docker Desktop is not able to access the filesystem of WSL, you need to copy `dockerized-aution-keeper` somewhere in the `/c/` path and run it from there. e.g. `/c/Users/username/dev/dockerized-auction-keeper` instead of `/home/username/dev/dockerized-auction-keeper`.
 
 Running `./start-keeper.sh flip-eth-a` from a WSL path will generate this error:
 ```
