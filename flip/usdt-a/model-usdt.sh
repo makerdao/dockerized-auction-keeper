@@ -7,7 +7,7 @@ while true; do
   # dynamic bid price
   body=$(curl -s -X GET "$FLIP_USDT_URL" -H "accept: application/json")
   usdtPrice=$(echo $body | jq '."tether".usd')
-  bidPrice=$(bc -l <<< "$usdtPrice * (1-$FLIP_USDT_DISCOUNT)")
+  bidPrice=$(bc -l <<< "$usdtPrice * (1-$FLIP_USDT_A_DISCOUNT)")
 
   echo "{\"price\": \"${bidPrice}\"}"
 
