@@ -164,8 +164,8 @@ FLIP_MINIMUM_BAL_A_AUCTION_ID_TO_CHECK=0
 FLIP_BAL_URL="https://api.coingecko.com/api/v3/simple/price?ids=balancer&vs_currencies=usd"
 FLIP_BAL_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
-###### FLIP-LRC-A Config ######
-FLIP_LRC_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+###### FLIP-YFI-A Config ######
+FLIP_YFI_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLIP_YFI_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-yfi-a.json,pass_file=/opt/keeper/secrets/password-flip-yfi-a.txt'
 FLIP_YFI_A_DAI_IN_VAT=${DAI_IN_VAT}
 FLIP_ILK_YFI_A=YFI-A
