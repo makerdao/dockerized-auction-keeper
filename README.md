@@ -42,6 +42,9 @@ After following the setup procedure below, this keeper works out of the box unde
     - LRC
     - BAL
     - YFI
+    - GUSD
+    - RENBTC
+    - UNI
 - All logs from the keeper are saved and appended to a single file:
     - `auction-keeper-flip-ETH-A.log`
     - `auction-keeper-flip-ETH-B.log`
@@ -60,6 +63,9 @@ After following the setup procedure below, this keeper works out of the box unde
     - `auction-keeper-flip-LRC-A.log`
     - `auction-keeper-flip-BAL-A.log`
     - `auction-keeper-flip-YFI-A.log`
+    - `auction-keeper-flip-GUSD-A.log`
+    - `auction-keeper-flip-RENBTC-A.log`
+    - `auction-keeper-flip-UNI-A.log`
 - Place unlocked keystore and password file for account address under `secrets` directory. The names of the keystore and password files will need to be updated in the environment:
     - `FLIP_ETH_A_ACCOUNT_KEY`
     - `FLIP_ETH_B_ACCOUNT_KEY`
@@ -78,6 +84,9 @@ After following the setup procedure below, this keeper works out of the box unde
     - `FLIP_LRC_A_ACCOUNT_KEY`
     - `FLIP_BAL_A_ACCOUNT_KEY`
     - `FLIP_YFI_A_ACCOUNT_KEY`
+    - `FLIP_GUSD_A_ACCOUNT_KEY`
+    - `FLIP_RENBTC_A_ACCOUNT_KEY`
+    - `FLIP_UNI_A_ACCOUNT_KEY`
 - Configure following variables in `env/environment.sh` file:
     - `SERVER_ETH_RPC_HOST`: URL to ETH Parity node (containing port if case) e.g. http://localhost:8545
     - `ETHGASSTATION_API_KEY`: eth gas station API KEY, can be applied for at https://data.concourseopen.com/
@@ -103,6 +112,9 @@ After following the setup procedure below, this keeper works out of the box unde
         - `FLIP_LRC_A_DAI_IN_VAT`
         - `FLIP_BAL_A_DAI_IN_VAT`
         - `FLIP_YFI_A_DAI_IN_VAT`
+        - `FLIP_GUSD_A_DAI_IN_VAT`
+        - `FLIP_RENBTC_A_DAI_IN_VAT`
+        - `FLIP_UNI_A_DAI_IN_VAT`
     - Minimum auction id to check as recommendation under introduction section:
         - `FLIP_MINIMUM_ETH_A_AUCTION_ID_TO_CHECK`
         - `FLIP_MINIMUM_ETH_B_AUCTION_ID_TO_CHECK`
@@ -121,6 +133,9 @@ After following the setup procedure below, this keeper works out of the box unde
         - `FLIP_MINIMUM_LRC_A_AUCTION_ID_TO_CHECK`
         - `FLIP_MINIMUM_BAL_A_AUCTION_ID_TO_CHECK`
         - `FLIP_MINIMUM_YFI_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_GUSD_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_RENBTC_A_AUCTION_ID_TO_CHECK`
+        - `FLIP_MINIMUM_UNI_A_AUCTION_ID_TO_CHECK`
     - Discount from asset's fair market value (FMV), which will be used as the bid price:
         - `FLIP_ETH_A_DISCOUNT`
         - `FLIP_ETH_B_DISCOUNT`
@@ -139,6 +154,9 @@ After following the setup procedure below, this keeper works out of the box unde
         - `FLIP_LRC_A_DISCOUNT`
         - `FLIP_BAL_A_DISCOUNT`
         - `FLIP_YFI_A_DISCOUNT`
+        - `FLIP_GUSD_A_DISCOUNT`
+        - `FLIP_RENBTC_A_DISCOUNT`
+        - `FLIP_UNI_A_DISCOUNT`
     - Account address to use for bidding:
         - `FLIP_ETH_A_ACCOUNT_ADDRESS`
         - `FLIP_ETH_B_ACCOUNT_ADDRESS`
@@ -157,6 +175,9 @@ After following the setup procedure below, this keeper works out of the box unde
         - `FLIP_LRC_A_ACCOUNT_ADDRESS`
         - `FLIP_BAL_A_ACCOUNT_ADDRESS`
         - `FLIP_YFI_A_ACCOUNT_ADDRESS`
+        - `FLIP_GUSD_A_ACCOUNT_ADDRESS`
+        - `FLIP_RENBTC_A_ACCOUNT_ADDRESS`
+        - `FLIP_UNI_A_ACCOUNT_ADDRESS`
     - Account key format of: `key_file=/opt/keeper/secrets/keystore.json,pass_file=/opt/keeper/secrets/password.txt`
         - `FLIP_ETH_A_ACCOUNT_KEY`
         - `FLIP_ETH_B_ACCOUNT_KEY`
@@ -175,6 +196,9 @@ After following the setup procedure below, this keeper works out of the box unde
         - `FLIP_LRC_A_ACCOUNT_KEY`
         - `FLIP_BAL_A_ACCOUNT_KEY`
         - `FLIP_YFI_A_ACCOUNT_KEY`
+        - `FLIP_GUSD_A_ACCOUNT_KEY`
+        - `FLIP_RENBTC_A_ACCOUNT_KEY`
+        - `FLIP_UNI_A_ACCOUNT_KEY`
 
     **Note**: Path to file should always be `/opt/keeper/secrets/` followed by the name of file you create under secrets directory.
     Ex: if you put `keystore-flip-a.json` and `password-flip-a.txt` under `secrets` directory then var should be configured as:
@@ -211,6 +235,12 @@ After following the setup procedure below, this keeper works out of the box unde
     `FLIP_BAL_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-bal-a.json,pass_file=/opt/keeper/secrets/password-flip-bal-a.txt'`
     or
     `FLIP_YFI_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-yfi-a.json,pass_file=/opt/keeper/secrets/password-flip-yfi-a.txt'`
+    or
+    `FLIP_GUSD_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-gusd-a.json,pass_file=/opt/keeper/secrets/password-flip-gusd-a.txt'`
+    or
+    `FLIP_RENBTC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-renbtc-a.json,pass_file=/opt/keeper/secrets/password-flip-renbtc-a.txt'`
+    or
+    `FLIP_UNI_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-uni-a.json,pass_file=/opt/keeper/secrets/password-flip-uni-a.txt'`
 
     **Note**: for better security you should avoid distributing password file to the machine and instead specify only keystore in key variable, e.g. `FLIP_ETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-eth-a.json'` and use `./start-interactive-keeper.sh`. You wil be asked to input password on keeper startup.
 
@@ -303,6 +333,15 @@ flip-bal-a keeper
 flip-yfi-a keeper
 `./start-keeper.sh flip-yfi-a | tee -a -i auction-keeper-flip-YFI-A.log`
 
+flip-gusd-a keeper
+`./start-keeper.sh flip-gusd-a | tee -a -i auction-keeper-flip-GUSD-A.log`
+
+flip-renbtc-a keeper
+`./start-keeper.sh flip-renbtc-a | tee -a -i auction-keeper-flip-RENBTC-A.log`
+
+flip-uni-a keeper
+`./start-keeper.sh flip-uni-a | tee -a -i auction-keeper-flip-UNI-A.log`
+
 flap keeper
 `./start-keeper.sh flap | tee -a -i auction-keeper-flap.log`
 
@@ -363,6 +402,15 @@ flip-bal-a keeper
 
 flip-yfi-a keeper
 `./stop-keeper.sh flip-yfi-a`
+
+flip-gusd-a keeper
+`./stop-keeper.sh flip-gusd-a`
+
+flip-renbtc-a keeper
+`./stop-keeper.sh flip-renbtc-a`
+
+flip-uni-a keeper
+`./stop-keeper.sh flip-uni-a`
 
 flap keeper
 `./stop-keeper.sh flap`
