@@ -255,6 +255,51 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-yfi-a.sh model-yfi.sh
+  flip-gusd-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-gusd-a
+    working_dir: /opt/keeper/flip-gusd-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/gusd-a/:/opt/keeper/flip-gusd-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-gusd-a.sh model-gusd.sh
+  flip-renbtc-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-renbtc-a
+    working_dir: /opt/keeper/flip-renbtc-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/renbtc-a/:/opt/keeper/flip-renbtc-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-renbtc-a.sh model-renbtc.sh
+  flip-uni-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-uni-a
+    working_dir: /opt/keeper/flip-uni-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/uni-a/:/opt/keeper/flip-uni-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-uni-a.sh model-uni.sh
   flap:
     build: .
     image: makerdao/auction-keeper

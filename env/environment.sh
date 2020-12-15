@@ -173,6 +173,33 @@ FLIP_MINIMUM_YFI_A_AUCTION_ID_TO_CHECK=0
 FLIP_YFI_URL="https://api.coingecko.com/api/v3/simple/price?ids=yearn-finance&vs_currencies=usd"
 FLIP_YFI_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-GUSD-A Config ######
+FLIP_GUSD_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_GUSD_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-gusd-a.json,pass_file=/opt/keeper/secrets/password-flip-gusd-a.txt'
+FLIP_GUSD_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_GUSD_A=GUSD-A
+FLIP_MINIMUM_GUSD_A_AUCTION_ID_TO_CHECK=0
+FLIP_GUSD_URL="https://api.coingecko.com/api/v3/simple/price?ids=gemini-dollar&vs_currencies=usd"
+FLIP_GUSD_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-RENBTC-A Config ######
+FLIP_RENBTC_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_RENBTC_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-renbtc-a.json,pass_file=/opt/keeper/secrets/password-flip-renbtc-a.txt'
+FLIP_RENBTC_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_RENBTC_A=RENBTC-A
+FLIP_MINIMUM_RENBTC_A_AUCTION_ID_TO_CHECK=0
+FLIP_RENBTC_URL="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+FLIP_RENBTC_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-UNI-A Config ######
+FLIP_UNI_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_UNI_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-uni-a.json,pass_file=/opt/keeper/secrets/password-flip-uni-a.txt'
+FLIP_UNI_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_UNI_A=UNI-A
+FLIP_MINIMUM_UNI_A_AUCTION_ID_TO_CHECK=0
+FLIP_UNI_URL="https://api.coingecko.com/api/v3/simple/price?ids=uniswap&vs_currencies=usd"
+FLIP_UNI_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLAP Config ######
 FLAP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'
