@@ -1,0 +1,8 @@
+{
+  "name": "univ2-daieth-price-feed",
+  "dependencies": {
+    "ethers": "^4.0.45",
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
+  }
+}
