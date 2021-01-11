@@ -300,6 +300,50 @@ services:
         max-size: "100m"
         max-file: "10"
     command: ./flip-uni-a.sh model-uni.sh
+  flip-aave-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-aave-a
+    working_dir: /opt/keeper/flip-aave-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/aave-a/:/opt/keeper/flip-aave-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-aave-a.sh model-aave.sh
+  flip-univ2daieth-a:
+    build: .
+    image: makerdao/auction-keeper
+    container_name: flip-univ2daieth-a
+    depends_on:
+      - "univ2daieth-price-feed"
+    working_dir: /opt/keeper/flip-univ2daieth-a/
+    volumes:
+      - $PWD/secrets:/opt/keeper/secrets
+      - $PWD/env/:/opt/keeper/env/
+      - $PWD/flip/univ2daieth-a/:/opt/keeper/flip-univ2daieth-a/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    command: ./flip-univ2daieth-a.sh model-univ2daieth.sh
+  univ2daieth-price-feed:
+    build:
+      context: ./price-feeds/univ2daieth
+    image: makerdao/univ2daieth-price-feed
+    container_name: univ2daieth-price-feed
+    ports:
+      - "3000:3000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
   flap:
     build: .
     image: makerdao/auction-keeper

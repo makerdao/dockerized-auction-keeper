@@ -200,6 +200,24 @@ FLIP_MINIMUM_UNI_A_AUCTION_ID_TO_CHECK=0
 FLIP_UNI_URL="https://api.coingecko.com/api/v3/simple/price?ids=uniswap&vs_currencies=usd"
 FLIP_UNI_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
 
+###### FLIP-AAVE-A Config ######
+FLIP_AAVE_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_AAVE_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-aave-a.json,pass_file=/opt/keeper/secrets/password-flip-aave-a.txt'
+FLIP_AAVE_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_AAVE=AAVE-A
+FLIP_MINIMUM_AAVE_A_AUCTION_ID_TO_CHECK=0
+FLIP_AAVE_URL="https://api.coingecko.com/api/v3/simple/price?ids=aave&vs_currencies=usd"
+FLIP_AAVE_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
+###### FLIP-UNIV2DAIETH-A Config ######
+FLIP_UNIV2DAIETH_A_ACCOUNT_ADDRESS='0x40418bxxxxxx'
+FLIP_UNIV2DAIETH_A_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flip-univ2daieth-a.json,pass_file=/opt/keeper/secrets/password-flip-univ2daieth-a.txt'
+FLIP_UNIV2DAIETH_A_DAI_IN_VAT=${DAI_IN_VAT}
+FLIP_ILK_UNIV2DAIETH=UNIV2DAIETH-A
+FLIP_MINIMUM_UNIV2DAIETH_A_AUCTION_ID_TO_CHECK=0
+FLIP_UNIV2DAIETH_URL="http://univ2daieth-price-feed:3000/univ2daieth"
+FLIP_UNIV2DAIETH_A_DISCOUNT=0.25 # e.g. 0.25 = 25% discount from FMV
+
 ###### FLAP Config ######
 FLAP_ACCOUNT_ADDRESS='0x40418bxxxxxx'
 FLAP_ACCOUNT_KEY='key_file=/opt/keeper/secrets/keystore-flap.json,pass_file=/opt/keeper/secrets/password-flap.txt'
