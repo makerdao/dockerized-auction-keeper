@@ -1,3 +1,7 @@
+# Attention
+
+## This Repo in no longer active, please visit https://github.com/makerdao/auction-demo-keeper to run a keeper!!
+
 # dockerized-auction-keeper
 
 `dockerized-auction-keeper` contains a preconfigured [auction-keeper](https://github.com/makerdao/auction-keeper) that follows a simple FMV discount pricing model. With docker as the only prerequisite, this instance is well-suited for first-time auction keeper operators.
